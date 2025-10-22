@@ -1,0 +1,5 @@
+# Ignore everything except the gas folder
+**/**
+!gas/**/*.js
+!gas/**/*.html
+!appsscript.json
