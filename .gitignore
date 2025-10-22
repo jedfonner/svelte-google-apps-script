@@ -26,3 +26,4 @@ dist-ssr
 # Google Apps Script
 gas/Stylesheet.html
 gas/Javascript.html
+.clasp.json
