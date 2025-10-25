@@ -21,27 +21,7 @@
 </script>
 
 <main>
-  <div>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
-    <a href="https://developers.google.com/apps-script/" target="_blank" rel="noreferrer">
-      <img src={gasLogo} class="logo gas" alt="Google Apps Script Logo" />
-    </a>
-
-  </div>
-  <h1>Svelte + Google Apps Script</h1>
-
-  <div class="card">
-    <Counter />
-  </div>
-  <div class="card">
-    <button onclick={invokeServerFunction}>Invoke Server Function</button>
-  </div>
-
-  <p class="read-the-docs">
-    Click on the logos to learn more
-  </p>
+  <h1>Roadmap</h1>
 </main>
 
 <style>
