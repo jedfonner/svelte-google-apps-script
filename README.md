@@ -2,12 +2,19 @@
 
 This demonstrates how to use Svelte with Google Apps Script.
 
+## Developing
+1. Run `npm install` to install dependencies.
+2. Run `npm run dev` to start the development server.
+3. Open `http://localhost:5173` in your browser to see the app.
+4. Edit the Svelte components in the `src` folder. The app will reload automatically
+
 ## Building
 
 1. Run `npm install` to install dependencies.
 2. Run `npm run build` to build the project.
 3. Copy the contents of the `gas` folder into your Google Apps Script project.
 4. Create a new "web app" deployment in Google Apps Script
+
 
 ## How to extend
 - Add your Svelte components in the `src/lib` folder.
