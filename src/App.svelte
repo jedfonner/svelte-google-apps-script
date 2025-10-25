@@ -1,7 +1,9 @@
 <script lang="ts">
-  import svelteLogo from './assets/svelte.svg'
-  import gasLogo from './assets/appsscript.svg'
-  import Counter from './lib/Counter.svelte'
+  import type { RoadmapItem } from "./types";
+  import roadmapData from './roadmap-data.json';
+  import Roadmap from './lib/Roadmap.svelte';
+
+  let items: RoadmapItem[] = roadmapData as RoadmapItem[];
 
   const invokeServerFunction = async () => {
     try {
@@ -22,6 +24,7 @@
 
 <main>
   <h1>Roadmap</h1>
+  <Roadmap {items} />
 </main>
 
 <style>
