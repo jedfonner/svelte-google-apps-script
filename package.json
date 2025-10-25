@@ -15,6 +15,7 @@
     "clasp:logout": "clasp logout",
     "clasp:create": "clasp create --type webapp --title \"Svelte Google Apps Script\" --rootDir .",
     "clasp:push": "clasp push",
+    "preclasp:push": "npm run build",
     "clasp:open": "clasp open",
     "clasp:deploy": "clasp deploy",
     "clasp:deployments": "clasp deployments",

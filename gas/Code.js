@@ -1,6 +1,8 @@
 function doGet(e) {
   return HtmlService.createTemplateFromFile('Index')
-    .evaluate().setTitle('Svelte Google Apps Script').setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+    .evaluate()
+    .setTitle('Svelte Google Apps Script')
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 
 function include(filename) {
