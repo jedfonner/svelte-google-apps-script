@@ -5,6 +5,6 @@ export interface RoadmapItem {
   startPi: string;
   endPi: string;
   parentId: string;
-  status: 'planned' | 'in-progress' | 'completed';
+  status: '' | 'planned' | 'in-progress' | 'completed';
   children: RoadmapItem[];
 }

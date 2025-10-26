@@ -1,6 +1,9 @@
 <script lang="ts">
   import type { RoadmapItem } from "../types";
 
+  const ROW_START_INDEX = 3; // Because of header row
+  const COLUMN_START_INDEX = 4; // Because of title, owner, status columns
+
   interface Props {
     items: RoadmapItem[];
   }
@@ -11,7 +14,8 @@
 
   let filter = $state({
     title: '',
-    owner: ''
+    owner: '',
+    status: ''
   })
 
   const PIs = ['25.1', '25.2', '25.3', '25.4', '25.5', '25.6'];
@@ -22,9 +26,22 @@
     const endIndex = PIs.indexOf(endPi);
 
     return {
-      start: startIndex >= 0 ? startIndex + 3 : 3, // +3 to account for title, owner columns
-      end: endIndex >= 0 ? endIndex + 4 : 9 // +4 to span to end of that column
+      start: startIndex >= 0 ? startIndex + COLUMN_START_INDEX : COLUMN_START_INDEX, // +3 to account for title, owner columns
+      end: endIndex >= 0 ? endIndex + COLUMN_START_INDEX + 1 : COLUMN_START_INDEX + PIs.length // +4 to span to end of that column
     };
+  }
+
+  function formatStatus(status: string): string {
+    switch (status.toLowerCase()) {
+      case 'planned':
+        return 'Planned';
+      case 'in-progress':
+        return 'In Progress';
+      case 'completed':
+        return 'Completed';
+      default:
+        return status;
+    }
   }
 
   // Flatten the tree structure to display all items
@@ -61,19 +78,20 @@
     return flatItems.filter(item => {
       const matchesTitle = filter.title === '' || item.title.toLowerCase().includes(filter.title.toLowerCase());
       const matchesOwner = filter.owner === '' || item.owner === '' || item.owner === filter.owner;
-      return matchesTitle && matchesOwner;
+      const matchesStatus = filter.status === '' || item.status === '' || item.status === filter.status;
+      return matchesTitle && matchesOwner && matchesStatus;
     });
   });
 
-  const ROW_START_INDEX = 3; // Because of header row
 
 </script>
 <div class="roadmap">
   <!-- Header Row -->
   <div class="header" style="grid-row: 1; grid-column: 1;">Title</div>
   <div class="header" style="grid-row: 1; grid-column: 2;">Owner</div>
+  <div class="header" style="grid-row: 1; grid-column: 3;">Status</div>
   {#each PIs as quarter, i}
-    <div class="header pi" style="grid-row: 1; grid-column: {i+3};">{quarter}</div>
+    <div class="header pi" style="grid-row: 1; grid-column: {i+COLUMN_START_INDEX};">{quarter}</div>
   {/each}
   <!-- Filter Row-->
   <div class="filter title" style="grid-row: 2; grid-column: 1;">
@@ -88,8 +106,16 @@
       {/each}
     </select>
   </div>
+  <div class="filter" style="grid-row: 2; grid-column: 3;">
+    <select style="width: 90%;" bind:value={filter.status}>
+      <option value="">All Statuses</option>
+      <option value="planned">Planned</option>
+      <option value="in-progress">In Progress</option>
+      <option value="completed">Completed</option>
+    </select>
+  </div>
   {#each PIs as _, i}
-    <div class="filter" style="grid-row: 2; grid-column: {i+3};">&nbsp;</div>
+    <div class="filter" style="grid-row: 2; grid-column: {i+COLUMN_START_INDEX};">&nbsp;</div>
   {/each}
 
   <!-- Background cells -->
@@ -105,8 +131,9 @@
     {/if}
     {#if item.level > 0} <!-- don't show any cells for top-level items -->
       <div class="cell owner" style="grid-row: {index+ROW_START_INDEX}; grid-column: 2;">{item.owner}</div>
+      <div class="cell status {item.status}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 3;">{formatStatus(item.status)}</div>
       {#each PIs as _, i}
-        <div class="cell pi-cell" style="grid-row: {index+ROW_START_INDEX}; grid-column: {i+3};"></div>
+        <div class="cell pi-cell" style="grid-row: {index+ROW_START_INDEX}; grid-column: {i+COLUMN_START_INDEX};"></div>
       {/each}
     {/if}
   {/each}
@@ -125,7 +152,7 @@
 <style>
   .roadmap {
     display: grid;
-    grid-template-columns: 300px 150px repeat(6, 1fr);
+    grid-template-columns: 300px 150px 150px repeat(6, 1fr);
     grid-auto-rows: 40px;
     gap: 1px;
     background-color: #ddd;
@@ -158,7 +185,6 @@
     grid-template-columns: auto 20px;
     gap: 4px;
   }
-
   .cell {
     background-color: white;
     color: navy;
@@ -179,6 +205,12 @@
   }
   .cell.owner {
     color: #333333;
+  }
+  .cell.status.completed {
+    color: green;
+  }
+  .cell.status.planned {
+    color: gray;
   }
   .cell.pi-cell {
     background-color: #f9f9f9;
