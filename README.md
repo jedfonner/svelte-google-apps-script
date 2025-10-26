@@ -24,6 +24,10 @@ This demonstrates how to use Svelte with Google Apps Script.
 
 ## Working with Clasp for automated deployment
 
+### Enable Clasp
+
+Enable the Google Apps Script API: https://script.google.com/home/usersettings
+
 ### Authenticate with Clasp
 
 Login to your Google account:
