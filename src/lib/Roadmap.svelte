@@ -7,6 +7,13 @@
 
   let { items }: Props = $props();
 
+  let owners = $derived(getAllOwners(items));
+
+  let filter = $state({
+    title: '',
+    owner: ''
+  })
+
   const PIs = ['25.1', '25.2', '25.3', '25.4', '25.5', '25.6'];
 
   // Function to get grid column span for a timeline bar
@@ -32,9 +39,35 @@
     return result;
   }
 
-  const flatItems = $derived(flattenItems(items));
-</script>
+  function getAllOwners(items: RoadmapItem[]): string[] {
+    const ownersSet = new Set<string>();
+    function extractOwners(items: RoadmapItem[]) {
+      for (const item of items) {
+        if (item.owner) {
+          ownersSet.add(item.owner);
+        }
+        if (item.children && item.children.length > 0) {
+          extractOwners(item.children);
+        }
+      }
+    }
+    extractOwners(items);
+    return Array.from(ownersSet);
+  }
 
+  const flatItems = $derived(flattenItems(items));
+
+  let filteredItems = $derived.by(() => {
+    return flatItems.filter(item => {
+      const matchesTitle = filter.title === '' || item.title.toLowerCase().includes(filter.title.toLowerCase());
+      const matchesOwner = filter.owner === '' || item.owner === '' || item.owner === filter.owner;
+      return matchesTitle && matchesOwner;
+    });
+  });
+
+  const ROW_START_INDEX = 3; // Because of header row
+
+</script>
 <div class="roadmap">
   <!-- Header Row -->
   <div class="header" style="grid-row: 1; grid-column: 1;">Title</div>
@@ -42,31 +75,47 @@
   {#each PIs as quarter, i}
     <div class="header pi" style="grid-row: 1; grid-column: {i+3};">{quarter}</div>
   {/each}
+  <!-- Filter Row-->
+  <div class="filter title" style="grid-row: 2; grid-column: 1;">
+    <input type="text" placeholder="Filter titles..."  bind:value={filter.title}/>
+    <input type="button" value="X" onclick={() => filter.title = ''} disabled={!filter.title}/>
+  </div>
+  <div class="filter" style="grid-row: 2; grid-column: 2;">
+    <select style="width: 90%;" bind:value={filter.owner} >
+      <option value="">All Owners</option>
+      {#each owners as owner}
+        <option value="{owner}">{owner}</option>
+      {/each}
+    </select>
+  </div>
+  {#each PIs as _, i}
+    <div class="filter" style="grid-row: 2; grid-column: {i+3};">&nbsp;</div>
+  {/each}
 
   <!-- Background cells -->
-  {#each flatItems as item, index}
+  {#each filteredItems as item, index}
   {#if item.level === 0}
-    <div class="cell title level-{item.level}" style="grid-row: {index+2}; grid-column: 1 / -1;">
+    <div class="cell title level-{item.level}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 1 / -1;">
         ↳&nbsp;{item.title}
     </div>
     {:else}
-    <div class="cell title level-{item.level}" style="grid-row: {index+2}; grid-column: 1;">
+    <div class="cell title level-{item.level}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 1;">
         ↳&nbsp;{item.title}
     </div>
     {/if}
     {#if item.level > 0} <!-- don't show any cells for top-level items -->
-      <div class="cell owner" style="grid-row: {index+2}; grid-column: 2;">{item.owner}</div>
+      <div class="cell owner" style="grid-row: {index+ROW_START_INDEX}; grid-column: 2;">{item.owner}</div>
       {#each PIs as _, i}
-        <div class="cell pi-cell" style="grid-row: {index+2}; grid-column: {i+3};"></div>
+        <div class="cell pi-cell" style="grid-row: {index+ROW_START_INDEX}; grid-column: {i+3};"></div>
       {/each}
     {/if}
   {/each}
 
   <!-- Timeline bars - overlay on top -->
-  {#each flatItems as item, index}
+  {#each filteredItems as item, index}
     {#if item.level > 0}
       <div class="timeline-bar status-{item.status}"
-        style="grid-row: {index+2}; grid-column: {getColumnSpan(item.startPi, item.endPi).start} / {getColumnSpan(item.startPi, item.endPi).end};">
+        style="grid-row: {index+ROW_START_INDEX}; grid-column: {getColumnSpan(item.startPi, item.endPi).start} / {getColumnSpan(item.startPi, item.endPi).end};">
         <div class="timeline-label">{item.startPi} → {item.endPi}</div>
       </div>
     {/if}
@@ -77,6 +126,7 @@
   .roadmap {
     display: grid;
     grid-template-columns: 300px 150px repeat(6, 1fr);
+    grid-auto-rows: 40px;
     gap: 1px;
     background-color: #ddd;
     font-size: 14px;
@@ -98,6 +148,15 @@
 
   .header.pi {
     background-color: #34495e;
+  }
+  .filter {
+    background-color: #f4f4f4;
+    padding: 8px;
+  }
+  .filter.title {
+    display: grid;
+    grid-template-columns: auto 20px;
+    gap: 4px;
   }
 
   .cell {
