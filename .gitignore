@@ -27,3 +27,6 @@ dist-ssr
 gas/Stylesheet.html
 gas/Javascript.html
 .clasp.json
+
+# Vibing
+.claude

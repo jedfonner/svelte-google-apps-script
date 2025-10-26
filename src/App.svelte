@@ -24,23 +24,28 @@
 
 <main>
   <h1>Roadmap</h1>
-  <Roadmap {items} />
+  <div class="roadmap-container">
+    <Roadmap {items} />
+  </div>
 </main>
 
 <style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
+  main {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
   }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
+
+  h1 {
+    flex-shrink: 0;
+    margin: 0;
+    padding: 1rem;
   }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
+
+  .roadmap-container {
+    flex: 1;
+    overflow: auto;
+    position: relative;
   }
 </style>
