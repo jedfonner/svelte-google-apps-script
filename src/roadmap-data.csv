@@ -1,0 +1,125 @@
+ID,Title,Owner,StartPI,EndPI,ParentId,Status,Level
+goal-1,"Platform Modernization Initiative","",,,,,0
+goal-1-scope-1,"Cloud Migration Phase 1","Code Genies",25.1,25.2,goal-1,completed,1
+goal-1-scope-1-feature-1,"Database migration to PostgreSQL","Datagenics",25.1,25.1,goal-1-scope-1,completed,2
+goal-1-scope-1-feature-2,"API gateway setup","Pioneers",25.1,25.1,goal-1-scope-1,completed,2
+goal-1-scope-1-feature-3,"Load balancer configuration","Sparky",25.1,25.2,goal-1-scope-1,completed,2
+goal-1-scope-1-feature-4,"CDN integration","Sinko de Mayo",25.2,25.2,goal-1-scope-1,completed,2
+goal-1-scope-1-feature-5,"Monitoring and alerting setup","Streamtroopers",25.2,25.2,goal-1-scope-1,completed,2
+goal-1-scope-2,"Microservices Architecture","Staunchwarriors",25.2,25.3,goal-1,in-progress,1
+goal-1-scope-2-feature-1,"User service extraction","Code Genies",25.2,25.2,goal-1-scope-2,completed,2
+goal-1-scope-2-feature-2,"Payment service extraction","Datagenics",25.2,25.3,goal-1-scope-2,in-progress,2
+goal-1-scope-2-feature-3,"Notification service extraction","Pioneers",25.3,25.3,goal-1-scope-2,planned,2
+goal-1-scope-2-feature-4,"Service mesh implementation","Sparky",25.3,25.3,goal-1-scope-2,planned,2
+goal-1-scope-2-feature-5,"API versioning strategy","Sinko de Mayo",25.2,25.3,goal-1-scope-2,in-progress,2
+goal-1-scope-3,"Security Hardening","Streamtroopers",25.2,25.4,goal-1,in-progress,1
+goal-1-scope-3-feature-1,"OAuth 2.0 implementation","Staunchwarriors",25.2,25.2,goal-1-scope-3,completed,2
+goal-1-scope-3-feature-2,"Encryption at rest","Code Genies",25.2,25.3,goal-1-scope-3,in-progress,2
+goal-1-scope-3-feature-3,"Penetration testing","Datagenics",25.3,25.3,goal-1-scope-3,planned,2
+goal-1-scope-3-feature-4,"WAF configuration","Pioneers",25.3,25.4,goal-1-scope-3,planned,2
+goal-1-scope-3-feature-5,"Security audit compliance","Sparky",25.4,25.4,goal-1-scope-3,planned,2
+goal-1-scope-4,"Performance Optimization","Sinko de Mayo",25.3,25.4,goal-1,planned,1
+goal-1-scope-4-feature-1,"Database query optimization","Streamtroopers",25.3,25.3,goal-1-scope-4,planned,2
+goal-1-scope-4-feature-2,"Caching layer implementation","Staunchwarriors",25.3,25.3,goal-1-scope-4,planned,2
+goal-1-scope-4-feature-3,"Frontend bundle optimization","Code Genies",25.3,25.4,goal-1-scope-4,planned,2
+goal-1-scope-4-feature-4,"Lazy loading implementation","Datagenics",25.4,25.4,goal-1-scope-4,planned,2
+goal-1-scope-4-feature-5,"Image optimization pipeline","Pioneers",25.4,25.4,goal-1-scope-4,planned,2
+goal-1-scope-5,"DevOps Automation","Sparky",25.1,25.3,goal-1,in-progress,1
+goal-1-scope-5-feature-1,"CI/CD pipeline setup","Sinko de Mayo",25.1,25.1,goal-1-scope-5,completed,2
+goal-1-scope-5-feature-2,"Infrastructure as Code","Streamtroopers",25.1,25.2,goal-1-scope-5,completed,2
+goal-1-scope-5-feature-3,"Automated testing framework","Staunchwarriors",25.2,25.2,goal-1-scope-5,completed,2
+goal-1-scope-5-feature-4,"Container orchestration","Code Genies",25.2,25.3,goal-1-scope-5,in-progress,2
+goal-1-scope-5-feature-5,"Deployment rollback automation","Datagenics",25.3,25.3,goal-1-scope-5,planned,2
+goal-2,"Customer Experience Enhancement","",,,,,0
+goal-2-scope-1,"Mobile App Redesign","Pioneers",25.1,25.2,goal-2,completed,1
+goal-2-scope-1-feature-1,"User research and personas","Sparky",25.1,25.1,goal-2-scope-1,completed,2
+goal-2-scope-1-feature-2,"UI/UX wireframes","Sinko de Mayo",25.1,25.1,goal-2-scope-1,completed,2
+goal-2-scope-1-feature-3,"Design system update","Streamtroopers",25.1,25.2,goal-2-scope-1,completed,2
+goal-2-scope-1-feature-4,"React Native implementation","Staunchwarriors",25.2,25.2,goal-2-scope-1,completed,2
+goal-2-scope-1-feature-5,"A/B testing and launch","Code Genies",25.2,25.2,goal-2-scope-1,completed,2
+goal-2-scope-2,"Personalization Engine","Datagenics",25.1,25.3,goal-2,in-progress,1
+goal-2-scope-2-feature-1,"User behavior tracking","Pioneers",25.1,25.1,goal-2-scope-2,completed,2
+goal-2-scope-2-feature-2,"ML model training","Sparky",25.1,25.2,goal-2-scope-2,completed,2
+goal-2-scope-2-feature-3,"Recommendation algorithm","Sinko de Mayo",25.2,25.2,goal-2-scope-2,completed,2
+goal-2-scope-2-feature-4,"Dynamic content delivery","Streamtroopers",25.2,25.3,goal-2-scope-2,in-progress,2
+goal-2-scope-2-feature-5,"Performance metrics dashboard","Staunchwarriors",25.3,25.3,goal-2-scope-2,planned,2
+goal-2-scope-3,"Omnichannel Support","Code Genies",25.2,25.3,goal-2,in-progress,1
+goal-2-scope-3-feature-1,"Live chat integration","Datagenics",25.2,25.2,goal-2-scope-3,completed,2
+goal-2-scope-3-feature-2,"Social media integration","Pioneers",25.2,25.2,goal-2-scope-3,completed,2
+goal-2-scope-3-feature-3,"Email support automation","Sparky",25.2,25.3,goal-2-scope-3,in-progress,2
+goal-2-scope-3-feature-4,"Voice support system","Sinko de Mayo",25.3,25.3,goal-2-scope-3,planned,2
+goal-2-scope-3-feature-5,"Unified ticket management","Streamtroopers",25.2,25.3,goal-2-scope-3,in-progress,2
+goal-2-scope-4,"Self-Service Portal","Staunchwarriors",25.1,25.2,goal-2,completed,1
+goal-2-scope-4-feature-1,"Knowledge base creation","Code Genies",25.1,25.1,goal-2-scope-4,completed,2
+goal-2-scope-4-feature-2,"FAQ chatbot","Datagenics",25.1,25.2,goal-2-scope-4,completed,2
+goal-2-scope-4-feature-3,"Video tutorials","Pioneers",25.1,25.2,goal-2-scope-4,completed,2
+goal-2-scope-4-feature-4,"Search functionality","Sparky",25.2,25.2,goal-2-scope-4,completed,2
+goal-2-scope-4-feature-5,"User feedback system","Sinko de Mayo",25.2,25.2,goal-2-scope-4,completed,2
+goal-2-scope-5,"Loyalty Program","Streamtroopers",25.2,25.3,goal-2,in-progress,1
+goal-2-scope-5-feature-1,"Points system design","Staunchwarriors",25.2,25.2,goal-2-scope-5,completed,2
+goal-2-scope-5-feature-2,"Rewards catalog","Code Genies",25.2,25.2,goal-2-scope-5,completed,2
+goal-2-scope-5-feature-3,"Tier progression system","Datagenics",25.2,25.3,goal-2-scope-5,in-progress,2
+goal-2-scope-5-feature-4,"Partner integrations","Pioneers",25.3,25.3,goal-2-scope-5,planned,2
+goal-2-scope-5-feature-5,"Analytics and reporting","Sparky",25.3,25.3,goal-2-scope-5,planned,2
+goal-3,"Data Analytics Platform","",,,,,0
+goal-3-scope-1,"Data Warehouse","Sinko de Mayo",25.2,25.3,goal-3,in-progress,1
+goal-3-scope-1-feature-1,"Schema design","Streamtroopers",25.2,25.2,goal-3-scope-1,completed,2
+goal-3-scope-1-feature-2,"ETL pipeline setup","Staunchwarriors",25.2,25.2,goal-3-scope-1,completed,2
+goal-3-scope-1-feature-3,"Data quality checks","Code Genies",25.2,25.3,goal-3-scope-1,in-progress,2
+goal-3-scope-1-feature-4,"Historical data migration","Datagenics",25.3,25.3,goal-3-scope-1,planned,2
+goal-3-scope-1-feature-5,"Performance tuning","Pioneers",25.3,25.3,goal-3-scope-1,planned,2
+goal-3-scope-2,"Business Intelligence Tools","Sparky",25.3,25.4,goal-3,planned,1
+goal-3-scope-2-feature-1,"Dashboard framework","Sinko de Mayo",25.3,25.3,goal-3-scope-2,planned,2
+goal-3-scope-2-feature-2,"Report builder","Streamtroopers",25.3,25.3,goal-3-scope-2,planned,2
+goal-3-scope-2-feature-3,"Data visualization library","Staunchwarriors",25.3,25.4,goal-3-scope-2,planned,2
+goal-3-scope-2-feature-4,"Scheduled reports","Code Genies",25.4,25.4,goal-3-scope-2,planned,2
+goal-3-scope-2-feature-5,"Export functionality","Datagenics",25.4,25.4,goal-3-scope-2,planned,2
+goal-3-scope-3,"Real-time Analytics","Pioneers",25.3,25.4,goal-3,planned,1
+goal-3-scope-3-feature-1,"Stream processing setup","Sparky",25.3,25.3,goal-3-scope-3,planned,2
+goal-3-scope-3-feature-2,"Event tracking system","Sinko de Mayo",25.3,25.3,goal-3-scope-3,planned,2
+goal-3-scope-3-feature-3,"Real-time aggregation","Streamtroopers",25.3,25.4,goal-3-scope-3,planned,2
+goal-3-scope-3-feature-4,"Alert system","Staunchwarriors",25.4,25.4,goal-3-scope-3,planned,2
+goal-3-scope-3-feature-5,"Live dashboard updates","Code Genies",25.4,25.4,goal-3-scope-3,planned,2
+goal-3-scope-4,"Predictive Analytics","Datagenics",25.4,25.5,goal-3,planned,1
+goal-3-scope-4-feature-1,"ML infrastructure","Pioneers",25.4,25.4,goal-3-scope-4,planned,2
+goal-3-scope-4-feature-2,"Feature engineering","Sparky",25.4,25.4,goal-3-scope-4,planned,2
+goal-3-scope-4-feature-3,"Model training pipeline","Sinko de Mayo",25.4,25.5,goal-3-scope-4,planned,2
+goal-3-scope-4-feature-4,"Prediction API","Streamtroopers",25.5,25.5,goal-3-scope-4,planned,2
+goal-3-scope-4-feature-5,"Model monitoring","Staunchwarriors",25.5,25.5,goal-3-scope-4,planned,2
+goal-3-scope-5,"Data Governance","Code Genies",25.2,25.3,goal-3,in-progress,1
+goal-3-scope-5-feature-1,"Data catalog","Datagenics",25.2,25.2,goal-3-scope-5,completed,2
+goal-3-scope-5-feature-2,"Access control policies","Pioneers",25.2,25.3,goal-3-scope-5,in-progress,2
+goal-3-scope-5-feature-3,"Data lineage tracking","Sparky",25.2,25.3,goal-3-scope-5,in-progress,2
+goal-3-scope-5-feature-4,"Compliance reporting","Sinko de Mayo",25.3,25.3,goal-3-scope-5,planned,2
+goal-3-scope-5-feature-5,"Audit trails","Streamtroopers",25.3,25.3,goal-3-scope-5,planned,2
+goal-4,"E-commerce Platform Expansion","",,,,,0
+goal-4-scope-1,"Marketplace Integration","Staunchwarriors",25.1,25.2,goal-4,completed,1
+goal-4-scope-1-feature-1,"Seller onboarding","Code Genies",25.1,25.1,goal-4-scope-1,completed,2
+goal-4-scope-1-feature-2,"Product listing management","Datagenics",25.1,25.1,goal-4-scope-1,completed,2
+goal-4-scope-1-feature-3,"Commission system","Pioneers",25.1,25.2,goal-4-scope-1,completed,2
+goal-4-scope-1-feature-4,"Seller dashboard","Sparky",25.2,25.2,goal-4-scope-1,completed,2
+goal-4-scope-1-feature-5,"Review and rating system","Sinko de Mayo",25.2,25.2,goal-4-scope-1,completed,2
+goal-4-scope-2,"International Shipping","Streamtroopers",25.2,25.3,goal-4,in-progress,1
+goal-4-scope-2-feature-1,"Multi-currency support","Staunchwarriors",25.2,25.2,goal-4-scope-2,completed,2
+goal-4-scope-2-feature-2,"Customs documentation","Code Genies",25.2,25.2,goal-4-scope-2,completed,2
+goal-4-scope-2-feature-3,"Carrier integrations","Datagenics",25.2,25.3,goal-4-scope-2,in-progress,2
+goal-4-scope-2-feature-4,"Tax calculation","Pioneers",25.3,25.3,goal-4-scope-2,planned,2
+goal-4-scope-2-feature-5,"Shipping rate calculator","Sparky",25.3,25.3,goal-4-scope-2,planned,2
+goal-4-scope-3,"Subscription Service","Sinko de Mayo",25.3,25.4,goal-4,planned,1
+goal-4-scope-3-feature-1,"Subscription plans","Streamtroopers",25.3,25.3,goal-4-scope-3,planned,2
+goal-4-scope-3-feature-2,"Recurring billing","Staunchwarriors",25.3,25.3,goal-4-scope-3,planned,2
+goal-4-scope-3-feature-3,"Subscription management","Code Genies",25.3,25.4,goal-4-scope-3,planned,2
+goal-4-scope-3-feature-4,"Cancellation flow","Datagenics",25.4,25.4,goal-4-scope-3,planned,2
+goal-4-scope-3-feature-5,"Subscription analytics","Pioneers",25.4,25.4,goal-4-scope-3,planned,2
+goal-4-scope-4,"Inventory Management","Sparky",25.1,25.2,goal-4,completed,1
+goal-4-scope-4-feature-1,"Stock tracking system","Sinko de Mayo",25.1,25.1,goal-4-scope-4,completed,2
+goal-4-scope-4-feature-2,"Warehouse management","Streamtroopers",25.1,25.1,goal-4-scope-4,completed,2
+goal-4-scope-4-feature-3,"Auto-reorder system","Staunchwarriors",25.1,25.2,goal-4-scope-4,completed,2
+goal-4-scope-4-feature-4,"Low stock alerts","Code Genies",25.2,25.2,goal-4-scope-4,completed,2
+goal-4-scope-4-feature-5,"Inventory reports","Datagenics",25.2,25.2,goal-4-scope-4,completed,2
+goal-4-scope-5,"AR Shopping Experience","Pioneers",25.4,25.6,goal-4,planned,1
+goal-4-scope-5-feature-1,"3D product models","Sparky",25.4,25.4,goal-4-scope-5,planned,2
+goal-4-scope-5-feature-2,"AR viewer app","Sinko de Mayo",25.4,25.5,goal-4-scope-5,planned,2
+goal-4-scope-5-feature-3,"Virtual try-on","Streamtroopers",25.5,25.5,goal-4-scope-5,planned,2
+goal-4-scope-5-feature-4,"Room visualization","Staunchwarriors",25.5,25.6,goal-4-scope-5,planned,2
+goal-4-scope-5-feature-5,"Social sharing integration","Code Genies",25.6,25.6,goal-4-scope-5,planned,2

@@ -1,32 +1,53 @@
 <script lang="ts">
   import type { RoadmapItem } from "./types";
-  import roadmapData from './roadmap-data.json';
   import Roadmap from './lib/Roadmap.svelte';
+  import { onMount } from "svelte";
 
-  let items: RoadmapItem[] = roadmapData as RoadmapItem[];
+  let status = $state('loading');
+  let items: RoadmapItem[] = $state([]);
 
-  const invokeServerFunction = async () => {
+  onMount(() => {
+    getDataFromServer();
+  });
+
+  const getDataFromServer = async () => {
     try {
       // @ts-ignore
-      const result = await google.script.run.withSuccessHandler((response) => {
+      await google.script.run.withSuccessHandler((response) => {
         console.log('Server response:', response);
-        alert('Server function invoked successfully!');
+        status = "loaded"
+        items = response as RoadmapItem[];
       }).withFailureHandler((error:any) => {
         console.error('Error invoking server function:', error);
         alert('Failed to invoke server function.');
-      }).testInvokationFromClient(); // Replace 'serverFunction' with your actual server function name
+      }).getRoadmapData();
     } catch (error) {
-      console.error('Unexpected error:', error);
-      alert('An unexpected error occurred.');
+      console.warn('google.script.run is not available. Running in local mode.');
+      try {
+        import('./roadmap-data.json').then((module) => {
+          items = module.default as RoadmapItem[];
+          status = "loaded"
+        });
+      } catch (jsonError) {
+        console.error('Error loading local JSON data:', jsonError);
+        status = "error"
+        return;
+      }
     }
   }
 </script>
 
 <main>
-  <h1>Roadmap</h1>
-  <div class="roadmap-container">
-    <Roadmap {items} />
-  </div>
+  <h1>Roadmap v1.5</h1>
+  {#if status === 'loading'}
+    <p>Loading...</p>
+  {:else if status === 'error'}
+    <p>Error loading data.</p>
+  {:else}
+    <div class="roadmap-container">
+      <Roadmap {items} />
+    </div>
+  {/if}
 </main>
 
 <style>
