@@ -32,6 +32,22 @@
     { label: 'Completed', value: 'completed' }
   ];
 
+  async function updateSpreadsheet(item:RoadmapItem): Promise<boolean> {
+    console.log('Updating item in spreadsheet:', item);
+    try {
+      // @ts-ignore
+      await google.script.run.withSuccessHandler((response:boolean) => {
+        console.log('Server response:', response);
+        return response;
+      }).withFailureHandler((error:any) => {
+        console.error('Error updating spreadsheet:', error);
+      }).updateSpreadsheet(item);
+    } catch (error) {
+      console.error('Error invoking server function:', error);
+    }
+    return false;
+  }
+
   // Flatten the tree structure to display all items
   function flattenItems(items: RoadmapItem[], level = 0): Array<RoadmapItem> {
     let result: Array<RoadmapItem> = [];
@@ -71,6 +87,7 @@
       return matchesTitle && matchesOwner && matchesStatus;
     });
   });
+
 
 </script>
 <div class="roadmap">
@@ -112,19 +129,21 @@
     <!-- Title -->
     {#if level === 0}
       <div class="cell title level-{level}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 1 / -1;">
-          ↳&nbsp;<Textbox bind:value={item.title} />
+          ↳&nbsp;<Textbox bind:value={item.title} onChange={() => updateSpreadsheet(item)} />
       </div>
     {:else}
       <div class="cell title level-{level}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 1;">
-          ↳&nbsp;<Textbox bind:value={item.title} />
+          ↳&nbsp;<Textbox bind:value={item.title} onChange={() => updateSpreadsheet(item)} />
       </div>
     {/if}
     {#if level > 0} <!-- don't show any cells for top-level items -->
       <!-- Owner -->
-      <div class="cell owner" style="grid-row: {index+ROW_START_INDEX}; grid-column: 2;"><Textbox bind:value={item.owner}/> </div>
+      <div class="cell owner" style="grid-row: {index+ROW_START_INDEX}; grid-column: 2;">
+        <Textbox bind:value={item.owner} onChange={() => updateSpreadsheet(item)}/>
+      </div>
       <!-- Status -->
       <div class="cell status {item.status}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 3;">
-      <Dropdown bind:value={item.status} options={STATUS_OPTIONS}/>
+      <Dropdown bind:value={item.status} options={STATUS_OPTIONS} onChange={() => updateSpreadsheet(item)}/>
       </div>
       <!-- Blank PI cells -->
       {#each PIs as _, i}
@@ -138,7 +157,7 @@
     {@const level = idLevelMap.get(item.id) ?? 0}
     {#if level > 0}
       <!-- ignore warnings about binding to non-reactive property-->
-      <TimelineBar bind:startPi={item.startPi} bind:endPi={item.endPi} status={item.status} {index} />
+      <TimelineBar bind:startPi={item.startPi} bind:endPi={item.endPi} status={item.status} {index} onChange={() => updateSpreadsheet(item)} />
     {/if}
   {/each}
 

@@ -76,3 +76,42 @@ function getRoadmapData() {
   documentProperties.setProperty('roadmapData', JSON.stringify(tree));
   return tree;
 }
+
+function updateSpreadsheet(updatedItem) {
+  Logger.log('Updating spreadsheet with item: ' + JSON.stringify(updatedItem));
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+  if (!sheet) {
+    Logger.log('Sheet not found: ' + SHEET_NAME);
+    return;
+  }
+  const dataRange = sheet.getDataRange();
+  const values = dataRange.getValues();
+  const headers = values[0];
+  const idCol = headers.indexOf('ID');
+
+  for (let rowIndex = 1; rowIndex < values.length; rowIndex++) {
+    if (values[rowIndex][idCol].toString() === updatedItem.id) {
+      const titleCol = headers.indexOf('Title');
+      const ownerCol = headers.indexOf('Owner');
+      const startPiCol = headers.indexOf('StartPI');
+      const endPiCol = headers.indexOf('EndPI');
+      const parentIdCol = headers.indexOf('ParentId');
+      const statusCol = headers.indexOf('Status');
+      sheet.getRange(rowIndex + 1, titleCol + 1).setValue(updatedItem.title);
+      sheet.getRange(rowIndex + 1, ownerCol + 1).setValue(updatedItem.owner);
+      sheet.getRange(rowIndex + 1, startPiCol + 1).setValue(updatedItem.startPi);
+      sheet.getRange(rowIndex + 1, endPiCol + 1).setValue(updatedItem.endPi);
+      sheet.getRange(rowIndex + 1, parentIdCol + 1).setValue(updatedItem.parentId);
+      sheet.getRange(rowIndex + 1, statusCol + 1).setValue(updatedItem.status);
+
+      Logger.log('Updated row ' + (rowIndex + 1) + ' with new data');
+
+      // Clear the cached data
+      const documentProperties = PropertiesService.getDocumentProperties();
+      documentProperties.deleteProperty('roadmapData');
+      return true;
+    }
+  }
+  Logger.log('Item with ID ' + updatedItem.id + ' not found in sheet.');
+  return false;
+}

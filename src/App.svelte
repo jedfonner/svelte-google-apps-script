@@ -38,7 +38,7 @@
 </script>
 
 <main>
-  <h1>Roadmap v1.5</h1>
+  <h1>Roadmap v1.6</h1>
   {#if status === 'loading'}
     <p>Loading...</p>
   {:else if status === 'error'}

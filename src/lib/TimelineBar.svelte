@@ -3,7 +3,7 @@
   import { type RoadmapItem } from "../types";
   import { ROW_START_INDEX, COLUMN_START_INDEX, PIs} from "./Roadmap.svelte";
 
-  let {startPi = $bindable(), endPi = $bindable(), status, index } = $props();
+  let {startPi = $bindable(), endPi = $bindable(), status, index, onChange } = $props();
 
 // Function to get grid column span for a timeline bar
   function getColumnSpan(startPi: string, endPi: string): { start: number; end: number } {
@@ -65,18 +65,21 @@
       if (startPi !== PIs[newStartIdx] || endPi !== PIs[newEndIdx]) {
         startPi = PIs[newStartIdx];
         endPi = PIs[newEndIdx];
+        onChange && onChange();
       }
     } else if (dragMode === 'resize-start') {
       // Resize from the start
       const newStartIdx = Math.max(0, Math.min(initialEndPiIndex, initialStartPiIndex + columnsShifted));
       if (startPi !== PIs[newStartIdx]) {
         startPi = PIs[newStartIdx];
+        onChange && onChange();
       }
     } else if (dragMode === 'resize-end') {
       // Resize from the end
       const newEndIdx = Math.max(initialStartPiIndex, Math.min(PIs.length - 1, initialEndPiIndex + columnsShifted));
       if (endPi !== PIs[newEndIdx]) {
         endPi = PIs[newEndIdx];
+        onChange && onChange();
       }
     }
   }

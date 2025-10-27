@@ -2,7 +2,7 @@
   interface FieldProps {
     value: string;
   }
-  let { value = $bindable() } = $props();
+  let { value = $bindable(), onChange } = $props();
 
   let isEditable = $state(false);
 </script>
@@ -10,8 +10,8 @@
   <!-- svelte-ignore a11y_autofocus -->
   <input class="field editable" type="text" bind:value={value}
         autofocus
-        onfocusout={() => isEditable = false}
-        onkeydown={(e) => { if (e.key === 'Enter') { e.preventDefault(); isEditable = false; }}} />
+        onfocusout={() => {isEditable = false; onChange && onChange()}}
+        onkeydown={(e) => { if (e.key === 'Enter') { e.preventDefault(); isEditable = false; onChange && onChange() }}} />
 {:else}
   <div class="field display" role="button" tabindex="0"
     onclick={() => isEditable = true}

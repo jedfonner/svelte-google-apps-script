@@ -7,7 +7,7 @@
     options: Option[];
     value: string;
   }
-  let { options, value = $bindable() } = $props();
+  let { options, value = $bindable(), onChange } = $props();
 
   function getDisplayValue(value: string): string {
     const option = options.find((opt: { value: string; }) => opt.value === value);
@@ -20,9 +20,9 @@
 {#if isEditable}
   <!-- svelte-ignore a11y_autofocus -->
   <select class="dropdown editable"  bind:value={value}
-        onfocusout={() => isEditable = false}
-        onkeydown={(e) => { console.log("keydown", e.key); if (e.key === 'Enter') { e.preventDefault(); isEditable = false; }}}
-        onchange={() => isEditable = false}
+        onfocusout={() => {isEditable = false; onChange && onChange()}}
+        onkeydown={(e) => { console.log("keydown", e.key); if (e.key === 'Enter') { e.preventDefault(); isEditable = false; onChange && onChange()}}}
+        onchange={() => {isEditable = false; onChange && onChange()}}
         >
     {#each options as option}
       <option value={option.value}>{option.label}</option>
