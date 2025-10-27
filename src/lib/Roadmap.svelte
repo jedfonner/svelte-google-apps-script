@@ -1,5 +1,7 @@
 <script lang="ts">
   import type { RoadmapItem } from "../types";
+  import Dropdown from "./Dropdown.svelte";
+  import Field from "./Field.svelte";
 
   const ROW_START_INDEX = 3; // Because of header row
   const COLUMN_START_INDEX = 4; // Because of title, owner, status columns
@@ -8,9 +10,11 @@
     items: RoadmapItem[];
   }
 
-  let { items }: Props = $props();
+  let { items = $bindable() }: Props = $props();
 
   let owners = $derived(getAllOwners(items));
+
+  let idLevelMap = $state(new Map<string, number>());
 
   let filter = $state({
     title: '',
@@ -19,6 +23,11 @@
   })
 
   const PIs = ['25.1', '25.2', '25.3', '25.4', '25.5', '25.6'];
+  const STATUS_OPTIONS = [
+    { label: 'Planned', value: 'planned' },
+    { label: 'In Progress', value: 'in-progress' },
+    { label: 'Completed', value: 'completed' }
+  ];
 
   // Function to get grid column span for a timeline bar
   function getColumnSpan(startPi: string, endPi: string): { start: number; end: number } {
@@ -31,24 +40,12 @@
     };
   }
 
-  function formatStatus(status: string): string {
-    switch (status.toLowerCase()) {
-      case 'planned':
-        return 'Planned';
-      case 'in-progress':
-        return 'In Progress';
-      case 'completed':
-        return 'Completed';
-      default:
-        return status;
-    }
-  }
-
   // Flatten the tree structure to display all items
-  function flattenItems(items: RoadmapItem[], level = 0): Array<RoadmapItem & { level: number }> {
-    let result: Array<RoadmapItem & { level: number }> = [];
+  function flattenItems(items: RoadmapItem[], level = 0): Array<RoadmapItem> {
+    let result: Array<RoadmapItem> = [];
     for (const item of items) {
-      result.push({ ...item, level });
+      result.push(item);
+      idLevelMap.set(item.id, level);
       if (item.children && item.children.length > 0) {
         result = result.concat(flattenItems(item.children, level + 1));
       }
@@ -120,18 +117,25 @@
 
   <!-- Background cells -->
   {#each filteredItems as item, index}
-  {#if item.level === 0}
-    <div class="cell title level-{item.level}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 1 / -1;">
-        ↳&nbsp;{item.title}
-    </div>
+    {@const level = idLevelMap.get(item.id) ?? 0}
+    <!-- Title -->
+    {#if level === 0}
+      <div class="cell title level-{level}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 1 / -1;">
+          ↳&nbsp;{item.title}
+      </div>
     {:else}
-    <div class="cell title level-{item.level}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 1;">
-        ↳&nbsp;{item.title}
-    </div>
+      <div class="cell title level-{level}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 1;">
+          ↳&nbsp;{item.title}
+      </div>
     {/if}
-    {#if item.level > 0} <!-- don't show any cells for top-level items -->
-      <div class="cell owner" style="grid-row: {index+ROW_START_INDEX}; grid-column: 2;">{item.owner}</div>
-      <div class="cell status {item.status}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 3;">{formatStatus(item.status)}</div>
+    {#if level > 0} <!-- don't show any cells for top-level items -->
+      <!-- Owner -->
+      <div class="cell owner" style="grid-row: {index+ROW_START_INDEX}; grid-column: 2;"><Field bind:value={item.owner}/> </div>
+      <!-- Status -->
+      <div class="cell status {item.status}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 3;">
+      <Dropdown bind:value={item.status} options={STATUS_OPTIONS}/>
+      </div>
+      <!-- Blank PI cells -->
       {#each PIs as _, i}
         <div class="cell pi-cell" style="grid-row: {index+ROW_START_INDEX}; grid-column: {i+COLUMN_START_INDEX};"></div>
       {/each}
@@ -140,10 +144,13 @@
 
   <!-- Timeline bars - overlay on top -->
   {#each filteredItems as item, index}
-    {#if item.level > 0}
+    {@const level = idLevelMap.get(item.id) ?? 0}
+    {#if level > 0}
       <div class="timeline-bar status-{item.status}"
         style="grid-row: {index+ROW_START_INDEX}; grid-column: {getColumnSpan(item.startPi, item.endPi).start} / {getColumnSpan(item.startPi, item.endPi).end};">
-        <div class="timeline-label">{item.startPi} → {item.endPi}</div>
+        <div class="timeline-label">
+          {item.startPi} → {item.endPi}
+        </div>
       </div>
     {/if}
   {/each}

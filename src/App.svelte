@@ -45,7 +45,7 @@
     <p>Error loading data.</p>
   {:else}
     <div class="roadmap-container">
-      <Roadmap {items} />
+      <Roadmap bind:items={items} />
     </div>
   {/if}
 </main>
