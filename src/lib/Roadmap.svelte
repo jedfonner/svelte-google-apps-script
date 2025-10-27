@@ -7,7 +7,7 @@
 <script lang="ts">
   import type { RoadmapItem } from "../types";
   import Dropdown from "./Dropdown.svelte";
-  import Field from "./Field.svelte";
+  import Textbox from "./Textbox.svelte";
   import TimelineBar from "./TimelineBar.svelte";
 
   interface Props {
@@ -112,16 +112,16 @@
     <!-- Title -->
     {#if level === 0}
       <div class="cell title level-{level}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 1 / -1;">
-          ↳&nbsp;{item.title}
+          ↳&nbsp;<Textbox bind:value={item.title} />
       </div>
     {:else}
       <div class="cell title level-{level}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 1;">
-          ↳&nbsp;{item.title}
+          ↳&nbsp;<Textbox bind:value={item.title} />
       </div>
     {/if}
     {#if level > 0} <!-- don't show any cells for top-level items -->
       <!-- Owner -->
-      <div class="cell owner" style="grid-row: {index+ROW_START_INDEX}; grid-column: 2;"><Field bind:value={item.owner}/> </div>
+      <div class="cell owner" style="grid-row: {index+ROW_START_INDEX}; grid-column: 2;"><Textbox bind:value={item.owner}/> </div>
       <!-- Status -->
       <div class="cell status {item.status}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 3;">
       <Dropdown bind:value={item.status} options={STATUS_OPTIONS}/>
