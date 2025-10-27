@@ -1,10 +1,14 @@
+<script module>
+  export const PIs = ['25.1', '25.2', '25.3', '25.4', '25.5', '25.6'];
+  export const ROW_START_INDEX = 3; // Because of header row
+  export const COLUMN_START_INDEX = 4; // Because of title, owner, status columns
+</script>
+
 <script lang="ts">
   import type { RoadmapItem } from "../types";
   import Dropdown from "./Dropdown.svelte";
   import Field from "./Field.svelte";
-
-  const ROW_START_INDEX = 3; // Because of header row
-  const COLUMN_START_INDEX = 4; // Because of title, owner, status columns
+  import TimelineBar from "./TimelineBar.svelte";
 
   interface Props {
     items: RoadmapItem[];
@@ -22,23 +26,11 @@
     status: ''
   })
 
-  const PIs = ['25.1', '25.2', '25.3', '25.4', '25.5', '25.6'];
   const STATUS_OPTIONS = [
     { label: 'Planned', value: 'planned' },
     { label: 'In Progress', value: 'in-progress' },
     { label: 'Completed', value: 'completed' }
   ];
-
-  // Function to get grid column span for a timeline bar
-  function getColumnSpan(startPi: string, endPi: string): { start: number; end: number } {
-    const startIndex = PIs.indexOf(startPi);
-    const endIndex = PIs.indexOf(endPi);
-
-    return {
-      start: startIndex >= 0 ? startIndex + COLUMN_START_INDEX : COLUMN_START_INDEX, // +3 to account for title, owner columns
-      end: endIndex >= 0 ? endIndex + COLUMN_START_INDEX + 1 : COLUMN_START_INDEX + PIs.length // +4 to span to end of that column
-    };
-  }
 
   // Flatten the tree structure to display all items
   function flattenItems(items: RoadmapItem[], level = 0): Array<RoadmapItem> {
@@ -79,7 +71,6 @@
       return matchesTitle && matchesOwner && matchesStatus;
     });
   });
-
 
 </script>
 <div class="roadmap">
@@ -146,12 +137,8 @@
   {#each filteredItems as item, index}
     {@const level = idLevelMap.get(item.id) ?? 0}
     {#if level > 0}
-      <div class="timeline-bar status-{item.status}"
-        style="grid-row: {index+ROW_START_INDEX}; grid-column: {getColumnSpan(item.startPi, item.endPi).start} / {getColumnSpan(item.startPi, item.endPi).end};">
-        <div class="timeline-label">
-          {item.startPi} → {item.endPi}
-        </div>
-      </div>
+      <!-- ignore warnings about binding to non-reactive property-->
+      <TimelineBar bind:startPi={item.startPi} bind:endPi={item.endPi} status={item.status} {index} />
     {/if}
   {/each}
 
@@ -235,46 +222,6 @@
     padding-left: 1.5rem;
   }
 
-  .timeline-bar {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 4px;
-    color: white;
-    font-weight: 500;
-    font-size: 12px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    position: relative;
-    z-index: 10;
-    margin: 2px;
-  }
-
-  .timeline-bar:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  }
-
-  .timeline-bar.status-planned {
-    background: linear-gradient(135deg, #a2a9ba 0%, #a2a9ba 100%);
-  }
-
-  .timeline-bar.status-in-progress {
-    background: linear-gradient(135deg, #7ea8f5 0%, #518eff 100%);
-  }
-
-  .timeline-bar.status-completed {
-    background: linear-gradient(135deg, #4bbd50 0%, #00c10a 100%);
-  }
-
-  .timeline-label {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
 
   @media (max-width: 1200px) {
     .roadmap {
