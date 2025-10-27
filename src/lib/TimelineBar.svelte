@@ -21,11 +21,13 @@
   let dragStartX = $state(0);
   let initialStartPiIndex = $state(0);
   let initialEndPiIndex = $state(0);
+  let dragMode = $state<'move' | 'resize-start' | 'resize-end' | null>(null);
 
-  function startDrag(e: MouseEvent, index: number) {
+  function startDrag(e: MouseEvent, index: number, mode: 'move' | 'resize-start' | 'resize-end') {
     if (e.button !== 0) return; // Only left click
 
     draggedItem = index;
+    dragMode = mode;
     dragStartX = e.clientX;
     initialStartPiIndex = PIs.indexOf(startPi);
     initialEndPiIndex = PIs.indexOf(endPi);
@@ -38,7 +40,7 @@
   }
 
   function handleDrag(e: MouseEvent) {
-    if (!draggedItem) return;
+    if (draggedItem === null || !dragMode) return;
 
     const deltaX = e.clientX - dragStartX;
     const gridElement = document.querySelector('.roadmap') as HTMLElement;
@@ -53,19 +55,35 @@
 
     if (columnsShifted === 0) return;
 
-    const duration = initialEndPiIndex - initialStartPiIndex;
-    const newStartIdx = Math.max(0, Math.min(PIs.length - duration - 1, initialStartPiIndex + columnsShifted));
-    const newEndIdx = newStartIdx + duration;
+    if (dragMode === 'move') {
+      // Move the entire bar
+      const duration = initialEndPiIndex - initialStartPiIndex;
+      const newStartIdx = Math.max(0, Math.min(PIs.length - duration - 1, initialStartPiIndex + columnsShifted));
+      const newEndIdx = newStartIdx + duration;
 
-    // Update the item's PIs
-    if (startPi !== PIs[newStartIdx] || endPi !== PIs[newEndIdx]) {
-      startPi = PIs[newStartIdx];
-      endPi = PIs[newEndIdx];
+      // Update the item's PIs
+      if (startPi !== PIs[newStartIdx] || endPi !== PIs[newEndIdx]) {
+        startPi = PIs[newStartIdx];
+        endPi = PIs[newEndIdx];
+      }
+    } else if (dragMode === 'resize-start') {
+      // Resize from the start
+      const newStartIdx = Math.max(0, Math.min(initialEndPiIndex, initialStartPiIndex + columnsShifted));
+      if (startPi !== PIs[newStartIdx]) {
+        startPi = PIs[newStartIdx];
+      }
+    } else if (dragMode === 'resize-end') {
+      // Resize from the end
+      const newEndIdx = Math.max(initialStartPiIndex, Math.min(PIs.length - 1, initialEndPiIndex + columnsShifted));
+      if (endPi !== PIs[newEndIdx]) {
+        endPi = PIs[newEndIdx];
+      }
     }
   }
 
   function stopDrag() {
     draggedItem = null;
+    dragMode = null;
     document.removeEventListener('mousemove', handleDrag);
     document.removeEventListener('mouseup', stopDrag);
   }
@@ -76,11 +94,21 @@
   class:dragging={draggedItem === index}
   role="button"
   tabindex="0"
-  onmousedown={(e) => startDrag(e, index)}
+  onmousedown={(e) => startDrag(e, index, 'move')}
   style="grid-row: {index+ROW_START_INDEX}; grid-column: {getColumnSpan(startPi, endPi).start} / {getColumnSpan(startPi, endPi).end};">
+  <div class="resize-handle resize-handle-start"
+    onmousedown={(e) => startDrag(e, index, 'resize-start')}
+    role="button"
+    tabindex="0"
+    aria-label="Resize start"></div>
   <div class="timeline-label">
     {startPi} → {endPi}
   </div>
+  <div class="resize-handle resize-handle-end"
+    onmousedown={(e) => startDrag(e, index, 'resize-end')}
+    role="button"
+    tabindex="0"
+    aria-label="Resize end"></div>
 </div>
 
 <style>
@@ -129,5 +157,36 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    flex: 1;
+  }
+
+  .resize-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    cursor: ew-resize;
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .resize-handle:hover,
+  .timeline-bar:hover .resize-handle {
+    opacity: 1;
+  }
+
+  .resize-handle-start {
+    left: 0;
+    background: linear-gradient(to right, rgba(255,255,255,0.3), transparent);
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+
+  .resize-handle-end {
+    right: 0;
+    background: linear-gradient(to left, rgba(255,255,255,0.3), transparent);
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
   }
 </style>
