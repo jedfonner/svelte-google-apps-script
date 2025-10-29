@@ -16,7 +16,7 @@
       await google.script.run.withSuccessHandler((response) => {
         console.log('Server response:', response);
         status = "loaded"
-        items = response as RoadmapItem[];
+        items = structuredClone(response) as RoadmapItem[];
       }).withFailureHandler((error:any) => {
         console.error('Error invoking server function:', error);
         alert('Failed to invoke server function.');
