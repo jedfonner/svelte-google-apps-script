@@ -23,9 +23,12 @@
 
 <style>
   .field.display {
+    min-width: 90%;
+    min-height: 50%;
     cursor: pointer;
   }
-  .field {
+  .field.editable {
     width:90%;
+
   }
 </style>

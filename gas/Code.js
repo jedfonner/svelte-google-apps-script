@@ -19,8 +19,8 @@ const SHEET_NAME = 'Roadmap';
 function getRoadmapData() {
   Logger.log('Getting roadmap data from sheets');
   const documentProperties = PropertiesService.getDocumentProperties();
-  //const propData = documentProperties.getProperty('roadmapData');
-  //if (propData) return JSON.parse(propData);
+  const propData = documentProperties.getProperty('roadmapData');
+  if (propData) return JSON.parse(propData);
 
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
   if (!sheet) {
@@ -95,4 +95,59 @@ function updateSpreadsheet(updatedItem) {
   }
   Logger.log('Item with ID ' + updatedItem.id + ' not found in sheet.');
   return false;
+}
+
+function addRoadmapItem(newItem, index) {
+  const rowIndex = index + 2; // to account for header row and 0-based index
+  Logger.log('Adding new roadmap item: ' + JSON.stringify(newItem) + ' at index ' + rowIndex);
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+  if (!sheet) {
+    Logger.log('Sheet not found: ' + SHEET_NAME);
+    return false;
+  }
+
+  sheet.insertRowBefore(rowIndex);
+
+  const headers = sheet.getDataRange().getValues()[0];
+  const idCol = headers.indexOf('ID');
+  const titleCol = headers.indexOf('Title');
+  const ownerCol = headers.indexOf('Owner');
+  const startPiCol = headers.indexOf('StartPI');
+  const endPiCol = headers.indexOf('EndPI');
+  const parentIdCol = headers.indexOf('ParentId');
+  const statusCol = headers.indexOf('Status');
+
+  sheet.getRange(rowIndex, idCol + 1).setValue(newItem.id);
+  sheet.getRange(rowIndex, titleCol + 1).setValue(newItem.title);
+  sheet.getRange(rowIndex, ownerCol + 1).setValue(newItem.owner);
+  sheet.getRange(rowIndex, startPiCol + 1).setValue(newItem.startPi);
+  sheet.getRange(rowIndex, endPiCol + 1).setValue(newItem.endPi);
+  sheet.getRange(rowIndex, parentIdCol + 1).setValue(newItem.parentId);
+  sheet.getRange(rowIndex, statusCol + 1).setValue(newItem.status);
+
+  // Clear the cached data
+  const documentProperties = PropertiesService.getDocumentProperties();
+  documentProperties.deleteProperty('roadmapData');
+
+  Logger.log('New roadmap item added.');
+  return true;
+}
+
+function removeRoadmapItem(index) {
+  const rowIndex = index + 2; // to account for header row and 0-based index
+
+  Logger.log('Removing roadmap item at index: ' + rowIndex);
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+  if (!sheet) {
+    Logger.log('Sheet not found: ' + SHEET_NAME);
+    return false;
+  }
+
+  sheet.deleteRow(rowIndex);
+  // Clear the cached data
+  const documentProperties = PropertiesService.getDocumentProperties();
+  documentProperties.deleteProperty('roadmapData');
+
+  Logger.log('Roadmap item removed.');
+  return true;
 }

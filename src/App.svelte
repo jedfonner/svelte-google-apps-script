@@ -38,7 +38,7 @@
 </script>
 
 <main>
-  <h1>Roadmap v1.7.1</h1>
+  <h1>Roadmap v1.8.0</h1>
   {#if status === 'loading'}
     <p>Loading...</p>
   {:else if status === 'error'}
@@ -63,7 +63,9 @@
     margin: 0;
     padding: 1rem;
   }
-
+  p {
+    padding: 1rem;
+  }
   .roadmap-container {
     flex: 1;
     overflow: auto;

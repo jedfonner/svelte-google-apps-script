@@ -6,6 +6,7 @@
 
 <script lang="ts">
   import type { RoadmapItem } from "../types";
+  import Button from "./Button.svelte";
   import Dropdown from "./Dropdown.svelte";
   import Textbox from "./Textbox.svelte";
   import TimelineBar from "./TimelineBar.svelte";
@@ -68,10 +69,70 @@
     return false;
   }
 
+  async function addChildItem(parentItem:RoadmapItem): Promise<void> {
+    const newItem: RoadmapItem = {
+      id: crypto.randomUUID(),
+      parentId: parentItem.id,
+      title: 'New Item',
+      owner: 'TBD',
+      status: 'planned',
+      startPi: parentItem.startPi || PIs[0],
+      endPi: parentItem.endPi || PIs[1],
+    };
+    const index = items.findIndex(item => item.id === parentItem.id);
+    items.splice(index + 1, 0, newItem);
+
+    // @ts-ignore
+    if (!globalThis.inGAS) {
+      console.warn('Not running in GAS environment. Skipping update.');
+      return;
+    }
+    try {
+      console.log('Adding new item to spreadsheet:', newItem);
+      // @ts-ignore
+      await google.script.run.withSuccessHandler((response:boolean) => {
+        console.log(`Spreadsheet ${response ? "successfully updated" : "failed to update"}`);
+        return response;
+      }).withFailureHandler((error:any) => {
+        console.error('Error updating spreadsheet:', error);
+      }).addRoadmapItem(newItem, index + 1);
+    } catch (error) {
+      console.error('Error invoking server function:', error);
+    }
+  }
+
+  async function removeItem(itemToRemove:RoadmapItem): Promise<void> {
+    const index = items.findIndex(item => item.id === itemToRemove.id);
+    if (index !== -1) {
+      items.splice(index, 1);
+      // @ts-ignore
+      if (!globalThis.inGAS) {
+        console.warn('Not running in GAS environment. Skipping update.');
+        return;
+      }
+    try {
+      console.log('Removing item to spreadsheet:', index);
+      // @ts-ignore
+      await google.script.run.withSuccessHandler((response:boolean) => {
+        console.log(`Spreadsheet ${response ? "successfully updated" : "failed to update"}`);
+        return response;
+      }).withFailureHandler((error:any) => {
+        console.error('Error updating spreadsheet:', error);
+      }).removeRoadmapItem(index);
+    } catch (error) {
+      console.error('Error invoking server function:', error);
+    }
+    }
+  }
+
   function getAllOwners(items: RoadmapItem[]): string[] {
     const ownersSet = new Set<string>();
     items.filter(item =>!!item.owner).forEach(item => ownersSet.add(item.owner!));
     return Array.from(ownersSet);
+  }
+
+  function hasChildren(item: RoadmapItem): boolean {
+    return items.some(i => i.parentId === item.id);
   }
 
   let filteredItems = $derived.by(() => {
@@ -123,12 +184,21 @@
     {@const level = idLevelMap.get(item.id) ?? 0}
     <!-- Title -->
     {#if level === 0}
-      <div class="cell title level-{level}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 1 / -1;">
-          ↳&nbsp;<Textbox bind:value={item.title} onChange={() => updateSpreadsheet(item)} />
+      <div class="cell title level-0" style="grid-row: {index+ROW_START_INDEX}; grid-column: 1 / -1;">
+          <span>↳&nbsp;</span>
+          <Textbox bind:value={item.title} onChange={() => updateSpreadsheet(item)} />
+          <Button size="small" onclick={() => addChildItem(item)}>+</Button>
       </div>
     {:else}
       <div class="cell title level-{level}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 1;">
-          ↳&nbsp;<Textbox bind:value={item.title} onChange={() => updateSpreadsheet(item)} />
+          <span>↳&nbsp;</span>
+          <Textbox bind:value={item.title} onChange={() => updateSpreadsheet(item)} />
+          {#if level < 2}
+          <Button size="small" onclick={() => addChildItem(item)} title="Add" style="positive">+</Button>
+          {/if}
+          {#if !hasChildren(item)}
+          <Button size="small" onclick={() => removeItem(item)} title="Delete" style="negative">X</Button>
+          {/if}
       </div>
     {/if}
     {#if level > 0} <!-- don't show any cells for top-level items -->
@@ -180,7 +250,6 @@
     top: 0;
     z-index: 100;
   }
-
   .header.pi {
     background-color: #34495e;
     text-align: center;
@@ -200,17 +269,22 @@
     padding-left: 8px;
     display: flex;
     align-items: center;
-    /* overflow: hidden; */
+    justify-content: start;
+    gap: 4px;
     position: relative;
     z-index: 1;
   }
-
   .cell.title {
     font-weight: 500;
   }
   .cell.title.level-0 {
     background-color: #e0e9ff;
     grid-column: 1 / -1;
+  }
+  .cell.title:not(.level-0) {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto;
+    padding-right: 4px;
   }
   .cell.owner {
     color: #333333;
@@ -226,7 +300,6 @@
   }
   .cell.level-0 {
     font-size: 1.1rem;
-    min-height: 50px;
   }
   .cell.level-1 {
     font-size: 1rem;
@@ -236,7 +309,6 @@
   .cell.level-2 {
     padding-left: 1.5rem;
   }
-
 
   @media (max-width: 1200px) {
     .roadmap {
