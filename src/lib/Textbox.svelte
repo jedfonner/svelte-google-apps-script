@@ -14,6 +14,7 @@
         onkeydown={(e) => { if (e.key === 'Enter') { e.preventDefault(); isEditable = false; onChange && onChange() }}} />
 {:else}
   <div class="field display" role="button" tabindex="0"
+    title="Click to edit"
     onclick={() => isEditable = true}
     onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); isEditable = true; } }} >
     {value}

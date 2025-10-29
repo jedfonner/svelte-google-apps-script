@@ -30,6 +30,7 @@
   </select>
 {:else}
   <div class="dropdown display" role="button" tabindex="0"
+    title="Click to edit"
     onclick={() => isEditable = true}
     onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); isEditable = true; } }} >
     {getDisplayValue(value)}
