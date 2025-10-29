@@ -19,8 +19,8 @@ const SHEET_NAME = 'Roadmap';
 function getRoadmapData() {
   Logger.log('Getting roadmap data from sheets');
   const documentProperties = PropertiesService.getDocumentProperties();
-  const propData = documentProperties.getProperty('roadmapData');
-  if (propData) return JSON.parse(propData);
+  //const propData = documentProperties.getProperty('roadmapData');
+  //if (propData) return JSON.parse(propData);
 
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
   if (!sheet) {
@@ -53,28 +53,9 @@ function getRoadmapData() {
     status: row[statusCol].toString(),
   }));
 
-  // Build the tree representation
-  const itemMap = new Map();
-  const tree = [];
-
-  // Step 1: create map of all items by id and initialize children array for each item
-  data.forEach((item) => {
-    item.children = [];
-    itemMap.set(item.id, item);
-  });
-
-  // Step 2: link children to parents
-  data.forEach((item) => {
-    if (item.parentId && itemMap.has(item.parentId)) {
-      itemMap.get(item.parentId).children.push(item);
-    } else {
-      tree.push(item);
-    }
-  });
-
-  Logger.log('Returning data' + JSON.stringify(tree));
-  documentProperties.setProperty('roadmapData', JSON.stringify(tree));
-  return tree;
+  Logger.log('Returning data' + JSON.stringify(data));
+  documentProperties.setProperty('roadmapData', JSON.stringify(data));
+  return data;
 }
 
 function updateSpreadsheet(updatedItem) {

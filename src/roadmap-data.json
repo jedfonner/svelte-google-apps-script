@@ -6,314 +6,277 @@
     "startPi": "",
     "endPi": "",
     "parentId": "",
-    "status": "",
-    "children": [
-      {
-        "id": "goal-1-scope-1",
-        "title": "Cloud Migration Phase 1",
-        "owner": "Code Genies",
-        "startPi": "25.1",
-        "endPi": "25.2",
-        "parentId": "goal-1",
-        "status": "completed",
-        "children": [
-          {
-            "id": "goal-1-scope-1-feature-1",
-            "title": "Database migration to PostgreSQL",
-            "owner": "Datagenics",
-            "startPi": "25.1",
-            "endPi": "25.1",
-            "parentId": "goal-1-scope-1",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-1-feature-2",
-            "title": "API gateway setup",
-            "owner": "Pioneers",
-            "startPi": "25.1",
-            "endPi": "25.1",
-            "parentId": "goal-1-scope-1",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-1-feature-3",
-            "title": "Load balancer configuration",
-            "owner": "Sparky",
-            "startPi": "25.1",
-            "endPi": "25.2",
-            "parentId": "goal-1-scope-1",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-1-feature-4",
-            "title": "CDN integration",
-            "owner": "Sinko de Mayo",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-1-scope-1",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-1-feature-5",
-            "title": "Monitoring and alerting setup",
-            "owner": "Streamtroopers",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-1-scope-1",
-            "status": "completed",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "goal-1-scope-2",
-        "title": "Microservices Architecture",
-        "owner": "Staunchwarriors",
-        "startPi": "25.2",
-        "endPi": "25.3",
-        "parentId": "goal-1",
-        "status": "in-progress",
-        "children": [
-          {
-            "id": "goal-1-scope-2-feature-1",
-            "title": "User service extraction",
-            "owner": "Code Genies",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-1-scope-2",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-2-feature-2",
-            "title": "Payment service extraction",
-            "owner": "Datagenics",
-            "startPi": "25.2",
-            "endPi": "25.3",
-            "parentId": "goal-1-scope-2",
-            "status": "in-progress",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-2-feature-3",
-            "title": "Notification service extraction",
-            "owner": "Pioneers",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-1-scope-2",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-2-feature-4",
-            "title": "Service mesh implementation",
-            "owner": "Sparky",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-1-scope-2",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-2-feature-5",
-            "title": "API versioning strategy",
-            "owner": "Sinko de Mayo",
-            "startPi": "25.2",
-            "endPi": "25.3",
-            "parentId": "goal-1-scope-2",
-            "status": "in-progress",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "goal-1-scope-3",
-        "title": "Security Hardening",
-        "owner": "Streamtroopers",
-        "startPi": "25.2",
-        "endPi": "25.4",
-        "parentId": "goal-1",
-        "status": "in-progress",
-        "children": [
-          {
-            "id": "goal-1-scope-3-feature-1",
-            "title": "OAuth 2.0 implementation",
-            "owner": "Staunchwarriors",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-1-scope-3",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-3-feature-2",
-            "title": "Encryption at rest",
-            "owner": "Code Genies",
-            "startPi": "25.2",
-            "endPi": "25.3",
-            "parentId": "goal-1-scope-3",
-            "status": "in-progress",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-3-feature-3",
-            "title": "Penetration testing",
-            "owner": "Datagenics",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-1-scope-3",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-3-feature-4",
-            "title": "WAF configuration",
-            "owner": "Pioneers",
-            "startPi": "25.3",
-            "endPi": "25.4",
-            "parentId": "goal-1-scope-3",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-3-feature-5",
-            "title": "Security audit compliance",
-            "owner": "Sparky",
-            "startPi": "25.4",
-            "endPi": "25.4",
-            "parentId": "goal-1-scope-3",
-            "status": "planned",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "goal-1-scope-4",
-        "title": "Performance Optimization",
-        "owner": "Sinko de Mayo",
-        "startPi": "25.3",
-        "endPi": "25.4",
-        "parentId": "goal-1",
-        "status": "planned",
-        "children": [
-          {
-            "id": "goal-1-scope-4-feature-1",
-            "title": "Database query optimization",
-            "owner": "Streamtroopers",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-1-scope-4",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-4-feature-2",
-            "title": "Caching layer implementation",
-            "owner": "Staunchwarriors",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-1-scope-4",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-4-feature-3",
-            "title": "Frontend bundle optimization",
-            "owner": "Code Genies",
-            "startPi": "25.3",
-            "endPi": "25.4",
-            "parentId": "goal-1-scope-4",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-4-feature-4",
-            "title": "Lazy loading implementation",
-            "owner": "Datagenics",
-            "startPi": "25.4",
-            "endPi": "25.4",
-            "parentId": "goal-1-scope-4",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-4-feature-5",
-            "title": "Image optimization pipeline",
-            "owner": "Pioneers",
-            "startPi": "25.4",
-            "endPi": "25.4",
-            "parentId": "goal-1-scope-4",
-            "status": "planned",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "goal-1-scope-5",
-        "title": "DevOps Automation",
-        "owner": "Sparky",
-        "startPi": "25.1",
-        "endPi": "25.3",
-        "parentId": "goal-1",
-        "status": "in-progress",
-        "children": [
-          {
-            "id": "goal-1-scope-5-feature-1",
-            "title": "CI/CD pipeline setup",
-            "owner": "Sinko de Mayo",
-            "startPi": "25.1",
-            "endPi": "25.1",
-            "parentId": "goal-1-scope-5",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-5-feature-2",
-            "title": "Infrastructure as Code",
-            "owner": "Streamtroopers",
-            "startPi": "25.1",
-            "endPi": "25.2",
-            "parentId": "goal-1-scope-5",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-5-feature-3",
-            "title": "Automated testing framework",
-            "owner": "Staunchwarriors",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-1-scope-5",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-5-feature-4",
-            "title": "Container orchestration",
-            "owner": "Code Genies",
-            "startPi": "25.2",
-            "endPi": "25.3",
-            "parentId": "goal-1-scope-5",
-            "status": "in-progress",
-            "children": []
-          },
-          {
-            "id": "goal-1-scope-5-feature-5",
-            "title": "Deployment rollback automation",
-            "owner": "Datagenics",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-1-scope-5",
-            "status": "planned",
-            "children": []
-          }
-        ]
-      }
-    ]
+    "status": ""
+  },
+  {
+    "id": "goal-1-scope-1",
+    "title": "Cloud Migration Phase 1",
+    "owner": "Code Genies",
+    "startPi": "25.1",
+    "endPi": "25.2",
+    "parentId": "goal-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-1-scope-1-feature-1",
+    "title": "Database migration to PostgreSQL",
+    "owner": "Datagenics",
+    "startPi": "25.1",
+    "endPi": "25.1",
+    "parentId": "goal-1-scope-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-1-scope-1-feature-2",
+    "title": "API gateway setup",
+    "owner": "Pioneers",
+    "startPi": "25.1",
+    "endPi": "25.1",
+    "parentId": "goal-1-scope-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-1-scope-1-feature-3",
+    "title": "Load balancer configuration",
+    "owner": "Sparky",
+    "startPi": "25.1",
+    "endPi": "25.2",
+    "parentId": "goal-1-scope-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-1-scope-1-feature-4",
+    "title": "CDN integration",
+    "owner": "Sinko de Mayo",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-1-scope-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-1-scope-1-feature-5",
+    "title": "Monitoring and alerting setup",
+    "owner": "Streamtroopers",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-1-scope-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-1-scope-2",
+    "title": "Microservices Architecture",
+    "owner": "Staunchwarriors",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-1",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-1-scope-2-feature-1",
+    "title": "User service extraction",
+    "owner": "Code Genies",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-1-scope-2",
+    "status": "completed"
+  },
+  {
+    "id": "goal-1-scope-2-feature-2",
+    "title": "Payment service extraction",
+    "owner": "Datagenics",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-1-scope-2",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-1-scope-2-feature-3",
+    "title": "Notification service extraction",
+    "owner": "Pioneers",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-1-scope-2",
+    "status": "planned"
+  },
+  {
+    "id": "goal-1-scope-2-feature-4",
+    "title": "Service mesh implementation",
+    "owner": "Sparky",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-1-scope-2",
+    "status": "planned"
+  },
+  {
+    "id": "goal-1-scope-2-feature-5",
+    "title": "API versioning strategy",
+    "owner": "Sinko de Mayo",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-1-scope-2",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-1-scope-3",
+    "title": "Security Hardening",
+    "owner": "Streamtroopers",
+    "startPi": "25.2",
+    "endPi": "25.4",
+    "parentId": "goal-1",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-1-scope-3-feature-1",
+    "title": "OAuth 2.0 implementation",
+    "owner": "Staunchwarriors",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-1-scope-3",
+    "status": "completed"
+  },
+  {
+    "id": "goal-1-scope-3-feature-2",
+    "title": "Encryption at rest",
+    "owner": "Code Genies",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-1-scope-3",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-1-scope-3-feature-3",
+    "title": "Penetration testing",
+    "owner": "Datagenics",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-1-scope-3",
+    "status": "planned"
+  },
+  {
+    "id": "goal-1-scope-3-feature-4",
+    "title": "WAF configuration",
+    "owner": "Pioneers",
+    "startPi": "25.3",
+    "endPi": "25.4",
+    "parentId": "goal-1-scope-3",
+    "status": "planned"
+  },
+  {
+    "id": "goal-1-scope-3-feature-5",
+    "title": "Security audit compliance",
+    "owner": "Sparky",
+    "startPi": "25.4",
+    "endPi": "25.4",
+    "parentId": "goal-1-scope-3",
+    "status": "planned"
+  },
+  {
+    "id": "goal-1-scope-4",
+    "title": "Performance Optimization",
+    "owner": "Sinko de Mayo",
+    "startPi": "25.3",
+    "endPi": "25.4",
+    "parentId": "goal-1",
+    "status": "planned"
+  },
+  {
+    "id": "goal-1-scope-4-feature-1",
+    "title": "Database query optimization",
+    "owner": "Streamtroopers",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-1-scope-4",
+    "status": "planned"
+  },
+  {
+    "id": "goal-1-scope-4-feature-2",
+    "title": "Caching layer implementation",
+    "owner": "Staunchwarriors",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-1-scope-4",
+    "status": "planned"
+  },
+  {
+    "id": "goal-1-scope-4-feature-3",
+    "title": "Frontend bundle optimization",
+    "owner": "Code Genies",
+    "startPi": "25.3",
+    "endPi": "25.4",
+    "parentId": "goal-1-scope-4",
+    "status": "planned"
+  },
+  {
+    "id": "goal-1-scope-4-feature-4",
+    "title": "Lazy loading implementation",
+    "owner": "Datagenics",
+    "startPi": "25.4",
+    "endPi": "25.4",
+    "parentId": "goal-1-scope-4",
+    "status": "planned"
+  },
+  {
+    "id": "goal-1-scope-4-feature-5",
+    "title": "Image optimization pipeline",
+    "owner": "Pioneers",
+    "startPi": "25.4",
+    "endPi": "25.4",
+    "parentId": "goal-1-scope-4",
+    "status": "planned"
+  },
+  {
+    "id": "goal-1-scope-5",
+    "title": "DevOps Automation",
+    "owner": "Sparky",
+    "startPi": "25.1",
+    "endPi": "25.3",
+    "parentId": "goal-1",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-1-scope-5-feature-1",
+    "title": "CI/CD pipeline setup",
+    "owner": "Sinko de Mayo",
+    "startPi": "25.1",
+    "endPi": "25.1",
+    "parentId": "goal-1-scope-5",
+    "status": "completed"
+  },
+  {
+    "id": "goal-1-scope-5-feature-2",
+    "title": "Infrastructure as Code",
+    "owner": "Streamtroopers",
+    "startPi": "25.1",
+    "endPi": "25.2",
+    "parentId": "goal-1-scope-5",
+    "status": "completed"
+  },
+  {
+    "id": "goal-1-scope-5-feature-3",
+    "title": "Automated testing framework",
+    "owner": "Staunchwarriors",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-1-scope-5",
+    "status": "completed"
+  },
+  {
+    "id": "goal-1-scope-5-feature-4",
+    "title": "Container orchestration",
+    "owner": "Code Genies",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-1-scope-5",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-1-scope-5-feature-5",
+    "title": "Deployment rollback automation",
+    "owner": "Datagenics",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-1-scope-5",
+    "status": "planned"
   },
   {
     "id": "goal-2",
@@ -322,314 +285,277 @@
     "startPi": "",
     "endPi": "",
     "parentId": "",
-    "status": "",
-    "children": [
-      {
-        "id": "goal-2-scope-1",
-        "title": "Mobile App Redesign",
-        "owner": "Pioneers",
-        "startPi": "25.1",
-        "endPi": "25.2",
-        "parentId": "goal-2",
-        "status": "completed",
-        "children": [
-          {
-            "id": "goal-2-scope-1-feature-1",
-            "title": "User research and personas",
-            "owner": "Sparky",
-            "startPi": "25.1",
-            "endPi": "25.1",
-            "parentId": "goal-2-scope-1",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-1-feature-2",
-            "title": "UI/UX wireframes",
-            "owner": "Sinko de Mayo",
-            "startPi": "25.1",
-            "endPi": "25.1",
-            "parentId": "goal-2-scope-1",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-1-feature-3",
-            "title": "Design system update",
-            "owner": "Streamtroopers",
-            "startPi": "25.1",
-            "endPi": "25.2",
-            "parentId": "goal-2-scope-1",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-1-feature-4",
-            "title": "React Native implementation",
-            "owner": "Staunchwarriors",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-2-scope-1",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-1-feature-5",
-            "title": "A/B testing and launch",
-            "owner": "Code Genies",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-2-scope-1",
-            "status": "completed",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "goal-2-scope-2",
-        "title": "Personalization Engine",
-        "owner": "Datagenics",
-        "startPi": "25.1",
-        "endPi": "25.3",
-        "parentId": "goal-2",
-        "status": "in-progress",
-        "children": [
-          {
-            "id": "goal-2-scope-2-feature-1",
-            "title": "User behavior tracking",
-            "owner": "Pioneers",
-            "startPi": "25.1",
-            "endPi": "25.1",
-            "parentId": "goal-2-scope-2",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-2-feature-2",
-            "title": "ML model training",
-            "owner": "Sparky",
-            "startPi": "25.1",
-            "endPi": "25.2",
-            "parentId": "goal-2-scope-2",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-2-feature-3",
-            "title": "Recommendation algorithm",
-            "owner": "Sinko de Mayo",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-2-scope-2",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-2-feature-4",
-            "title": "Dynamic content delivery",
-            "owner": "Streamtroopers",
-            "startPi": "25.2",
-            "endPi": "25.3",
-            "parentId": "goal-2-scope-2",
-            "status": "in-progress",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-2-feature-5",
-            "title": "Performance metrics dashboard",
-            "owner": "Staunchwarriors",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-2-scope-2",
-            "status": "planned",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "goal-2-scope-3",
-        "title": "Omnichannel Support",
-        "owner": "Code Genies",
-        "startPi": "25.2",
-        "endPi": "25.3",
-        "parentId": "goal-2",
-        "status": "in-progress",
-        "children": [
-          {
-            "id": "goal-2-scope-3-feature-1",
-            "title": "Live chat integration",
-            "owner": "Datagenics",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-2-scope-3",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-3-feature-2",
-            "title": "Social media integration",
-            "owner": "Pioneers",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-2-scope-3",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-3-feature-3",
-            "title": "Email support automation",
-            "owner": "Sparky",
-            "startPi": "25.2",
-            "endPi": "25.3",
-            "parentId": "goal-2-scope-3",
-            "status": "in-progress",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-3-feature-4",
-            "title": "Voice support system",
-            "owner": "Sinko de Mayo",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-2-scope-3",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-3-feature-5",
-            "title": "Unified ticket management",
-            "owner": "Streamtroopers",
-            "startPi": "25.2",
-            "endPi": "25.3",
-            "parentId": "goal-2-scope-3",
-            "status": "in-progress",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "goal-2-scope-4",
-        "title": "Self-Service Portal",
-        "owner": "Staunchwarriors",
-        "startPi": "25.1",
-        "endPi": "25.2",
-        "parentId": "goal-2",
-        "status": "completed",
-        "children": [
-          {
-            "id": "goal-2-scope-4-feature-1",
-            "title": "Knowledge base creation",
-            "owner": "Code Genies",
-            "startPi": "25.1",
-            "endPi": "25.1",
-            "parentId": "goal-2-scope-4",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-4-feature-2",
-            "title": "FAQ chatbot",
-            "owner": "Datagenics",
-            "startPi": "25.1",
-            "endPi": "25.2",
-            "parentId": "goal-2-scope-4",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-4-feature-3",
-            "title": "Video tutorials",
-            "owner": "Pioneers",
-            "startPi": "25.1",
-            "endPi": "25.2",
-            "parentId": "goal-2-scope-4",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-4-feature-4",
-            "title": "Search functionality",
-            "owner": "Sparky",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-2-scope-4",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-4-feature-5",
-            "title": "User feedback system",
-            "owner": "Sinko de Mayo",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-2-scope-4",
-            "status": "completed",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "goal-2-scope-5",
-        "title": "Loyalty Program",
-        "owner": "Streamtroopers",
-        "startPi": "25.2",
-        "endPi": "25.3",
-        "parentId": "goal-2",
-        "status": "in-progress",
-        "children": [
-          {
-            "id": "goal-2-scope-5-feature-1",
-            "title": "Points system design",
-            "owner": "Staunchwarriors",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-2-scope-5",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-5-feature-2",
-            "title": "Rewards catalog",
-            "owner": "Code Genies",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-2-scope-5",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-5-feature-3",
-            "title": "Tier progression system",
-            "owner": "Datagenics",
-            "startPi": "25.2",
-            "endPi": "25.3",
-            "parentId": "goal-2-scope-5",
-            "status": "in-progress",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-5-feature-4",
-            "title": "Partner integrations",
-            "owner": "Pioneers",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-2-scope-5",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-2-scope-5-feature-5",
-            "title": "Analytics and reporting",
-            "owner": "Sparky",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-2-scope-5",
-            "status": "planned",
-            "children": []
-          }
-        ]
-      }
-    ]
+    "status": ""
+  },
+  {
+    "id": "goal-2-scope-1",
+    "title": "Mobile App Redesign",
+    "owner": "Pioneers",
+    "startPi": "25.1",
+    "endPi": "25.2",
+    "parentId": "goal-2",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-1-feature-1",
+    "title": "User research and personas",
+    "owner": "Sparky",
+    "startPi": "25.1",
+    "endPi": "25.1",
+    "parentId": "goal-2-scope-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-1-feature-2",
+    "title": "UI/UX wireframes",
+    "owner": "Sinko de Mayo",
+    "startPi": "25.1",
+    "endPi": "25.1",
+    "parentId": "goal-2-scope-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-1-feature-3",
+    "title": "Design system update",
+    "owner": "Streamtroopers",
+    "startPi": "25.1",
+    "endPi": "25.2",
+    "parentId": "goal-2-scope-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-1-feature-4",
+    "title": "React Native implementation",
+    "owner": "Staunchwarriors",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-2-scope-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-1-feature-5",
+    "title": "A/B testing and launch",
+    "owner": "Code Genies",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-2-scope-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-2",
+    "title": "Personalization Engine",
+    "owner": "Datagenics",
+    "startPi": "25.1",
+    "endPi": "25.3",
+    "parentId": "goal-2",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-2-scope-2-feature-1",
+    "title": "User behavior tracking",
+    "owner": "Pioneers",
+    "startPi": "25.1",
+    "endPi": "25.1",
+    "parentId": "goal-2-scope-2",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-2-feature-2",
+    "title": "ML model training",
+    "owner": "Sparky",
+    "startPi": "25.1",
+    "endPi": "25.2",
+    "parentId": "goal-2-scope-2",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-2-feature-3",
+    "title": "Recommendation algorithm",
+    "owner": "Sinko de Mayo",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-2-scope-2",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-2-feature-4",
+    "title": "Dynamic content delivery",
+    "owner": "Streamtroopers",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-2-scope-2",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-2-scope-2-feature-5",
+    "title": "Performance metrics dashboard",
+    "owner": "Staunchwarriors",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-2-scope-2",
+    "status": "planned"
+  },
+  {
+    "id": "goal-2-scope-3",
+    "title": "Omnichannel Support",
+    "owner": "Code Genies",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-2",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-2-scope-3-feature-1",
+    "title": "Live chat integration",
+    "owner": "Datagenics",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-2-scope-3",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-3-feature-2",
+    "title": "Social media integration",
+    "owner": "Pioneers",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-2-scope-3",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-3-feature-3",
+    "title": "Email support automation",
+    "owner": "Sparky",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-2-scope-3",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-2-scope-3-feature-4",
+    "title": "Voice support system",
+    "owner": "Sinko de Mayo",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-2-scope-3",
+    "status": "planned"
+  },
+  {
+    "id": "goal-2-scope-3-feature-5",
+    "title": "Unified ticket management",
+    "owner": "Streamtroopers",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-2-scope-3",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-2-scope-4",
+    "title": "Self-Service Portal",
+    "owner": "Staunchwarriors",
+    "startPi": "25.1",
+    "endPi": "25.2",
+    "parentId": "goal-2",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-4-feature-1",
+    "title": "Knowledge base creation",
+    "owner": "Code Genies",
+    "startPi": "25.1",
+    "endPi": "25.1",
+    "parentId": "goal-2-scope-4",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-4-feature-2",
+    "title": "FAQ chatbot",
+    "owner": "Datagenics",
+    "startPi": "25.1",
+    "endPi": "25.2",
+    "parentId": "goal-2-scope-4",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-4-feature-3",
+    "title": "Video tutorials",
+    "owner": "Pioneers",
+    "startPi": "25.1",
+    "endPi": "25.2",
+    "parentId": "goal-2-scope-4",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-4-feature-4",
+    "title": "Search functionality",
+    "owner": "Sparky",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-2-scope-4",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-4-feature-5",
+    "title": "User feedback system",
+    "owner": "Sinko de Mayo",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-2-scope-4",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-5",
+    "title": "Loyalty Program",
+    "owner": "Streamtroopers",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-2",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-2-scope-5-feature-1",
+    "title": "Points system design",
+    "owner": "Staunchwarriors",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-2-scope-5",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-5-feature-2",
+    "title": "Rewards catalog",
+    "owner": "Code Genies",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-2-scope-5",
+    "status": "completed"
+  },
+  {
+    "id": "goal-2-scope-5-feature-3",
+    "title": "Tier progression system",
+    "owner": "Datagenics",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-2-scope-5",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-2-scope-5-feature-4",
+    "title": "Partner integrations",
+    "owner": "Pioneers",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-2-scope-5",
+    "status": "planned"
+  },
+  {
+    "id": "goal-2-scope-5-feature-5",
+    "title": "Analytics and reporting",
+    "owner": "Sparky",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-2-scope-5",
+    "status": "planned"
   },
   {
     "id": "goal-3",
@@ -638,314 +564,277 @@
     "startPi": "",
     "endPi": "",
     "parentId": "",
-    "status": "",
-    "children": [
-      {
-        "id": "goal-3-scope-1",
-        "title": "Data Warehouse",
-        "owner": "Sinko de Mayo",
-        "startPi": "25.2",
-        "endPi": "25.3",
-        "parentId": "goal-3",
-        "status": "in-progress",
-        "children": [
-          {
-            "id": "goal-3-scope-1-feature-1",
-            "title": "Schema design",
-            "owner": "Streamtroopers",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-3-scope-1",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-1-feature-2",
-            "title": "ETL pipeline setup",
-            "owner": "Staunchwarriors",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-3-scope-1",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-1-feature-3",
-            "title": "Data quality checks",
-            "owner": "Code Genies",
-            "startPi": "25.2",
-            "endPi": "25.3",
-            "parentId": "goal-3-scope-1",
-            "status": "in-progress",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-1-feature-4",
-            "title": "Historical data migration",
-            "owner": "Datagenics",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-3-scope-1",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-1-feature-5",
-            "title": "Performance tuning",
-            "owner": "Pioneers",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-3-scope-1",
-            "status": "planned",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "goal-3-scope-2",
-        "title": "Business Intelligence Tools",
-        "owner": "Sparky",
-        "startPi": "25.3",
-        "endPi": "25.4",
-        "parentId": "goal-3",
-        "status": "planned",
-        "children": [
-          {
-            "id": "goal-3-scope-2-feature-1",
-            "title": "Dashboard framework",
-            "owner": "Sinko de Mayo",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-3-scope-2",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-2-feature-2",
-            "title": "Report builder",
-            "owner": "Streamtroopers",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-3-scope-2",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-2-feature-3",
-            "title": "Data visualization library",
-            "owner": "Staunchwarriors",
-            "startPi": "25.3",
-            "endPi": "25.4",
-            "parentId": "goal-3-scope-2",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-2-feature-4",
-            "title": "Scheduled reports",
-            "owner": "Code Genies",
-            "startPi": "25.4",
-            "endPi": "25.4",
-            "parentId": "goal-3-scope-2",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-2-feature-5",
-            "title": "Export functionality",
-            "owner": "Datagenics",
-            "startPi": "25.4",
-            "endPi": "25.4",
-            "parentId": "goal-3-scope-2",
-            "status": "planned",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "goal-3-scope-3",
-        "title": "Real-time Analytics",
-        "owner": "Pioneers",
-        "startPi": "25.3",
-        "endPi": "25.4",
-        "parentId": "goal-3",
-        "status": "planned",
-        "children": [
-          {
-            "id": "goal-3-scope-3-feature-1",
-            "title": "Stream processing setup",
-            "owner": "Sparky",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-3-scope-3",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-3-feature-2",
-            "title": "Event tracking system",
-            "owner": "Sinko de Mayo",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-3-scope-3",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-3-feature-3",
-            "title": "Real-time aggregation",
-            "owner": "Streamtroopers",
-            "startPi": "25.3",
-            "endPi": "25.4",
-            "parentId": "goal-3-scope-3",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-3-feature-4",
-            "title": "Alert system",
-            "owner": "Staunchwarriors",
-            "startPi": "25.4",
-            "endPi": "25.4",
-            "parentId": "goal-3-scope-3",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-3-feature-5",
-            "title": "Live dashboard updates",
-            "owner": "Code Genies",
-            "startPi": "25.4",
-            "endPi": "25.4",
-            "parentId": "goal-3-scope-3",
-            "status": "planned",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "goal-3-scope-4",
-        "title": "Predictive Analytics",
-        "owner": "Datagenics",
-        "startPi": "25.4",
-        "endPi": "25.5",
-        "parentId": "goal-3",
-        "status": "planned",
-        "children": [
-          {
-            "id": "goal-3-scope-4-feature-1",
-            "title": "ML infrastructure",
-            "owner": "Pioneers",
-            "startPi": "25.4",
-            "endPi": "25.4",
-            "parentId": "goal-3-scope-4",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-4-feature-2",
-            "title": "Feature engineering",
-            "owner": "Sparky",
-            "startPi": "25.4",
-            "endPi": "25.4",
-            "parentId": "goal-3-scope-4",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-4-feature-3",
-            "title": "Model training pipeline",
-            "owner": "Sinko de Mayo",
-            "startPi": "25.4",
-            "endPi": "25.5",
-            "parentId": "goal-3-scope-4",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-4-feature-4",
-            "title": "Prediction API",
-            "owner": "Streamtroopers",
-            "startPi": "25.5",
-            "endPi": "25.5",
-            "parentId": "goal-3-scope-4",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-4-feature-5",
-            "title": "Model monitoring",
-            "owner": "Staunchwarriors",
-            "startPi": "25.5",
-            "endPi": "25.5",
-            "parentId": "goal-3-scope-4",
-            "status": "planned",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "goal-3-scope-5",
-        "title": "Data Governance",
-        "owner": "Code Genies",
-        "startPi": "25.2",
-        "endPi": "25.3",
-        "parentId": "goal-3",
-        "status": "in-progress",
-        "children": [
-          {
-            "id": "goal-3-scope-5-feature-1",
-            "title": "Data catalog",
-            "owner": "Datagenics",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-3-scope-5",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-5-feature-2",
-            "title": "Access control policies",
-            "owner": "Pioneers",
-            "startPi": "25.2",
-            "endPi": "25.3",
-            "parentId": "goal-3-scope-5",
-            "status": "in-progress",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-5-feature-3",
-            "title": "Data lineage tracking",
-            "owner": "Sparky",
-            "startPi": "25.2",
-            "endPi": "25.3",
-            "parentId": "goal-3-scope-5",
-            "status": "in-progress",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-5-feature-4",
-            "title": "Compliance reporting",
-            "owner": "Sinko de Mayo",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-3-scope-5",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-3-scope-5-feature-5",
-            "title": "Audit trails",
-            "owner": "Streamtroopers",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-3-scope-5",
-            "status": "planned",
-            "children": []
-          }
-        ]
-      }
-    ]
+    "status": ""
+  },
+  {
+    "id": "goal-3-scope-1",
+    "title": "Data Warehouse",
+    "owner": "Sinko de Mayo",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-3",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-3-scope-1-feature-1",
+    "title": "Schema design",
+    "owner": "Streamtroopers",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-3-scope-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-3-scope-1-feature-2",
+    "title": "ETL pipeline setup",
+    "owner": "Staunchwarriors",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-3-scope-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-3-scope-1-feature-3",
+    "title": "Data quality checks",
+    "owner": "Code Genies",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-3-scope-1",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-3-scope-1-feature-4",
+    "title": "Historical data migration",
+    "owner": "Datagenics",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-3-scope-1",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-1-feature-5",
+    "title": "Performance tuning",
+    "owner": "Pioneers",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-3-scope-1",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-2",
+    "title": "Business Intelligence Tools",
+    "owner": "Sparky",
+    "startPi": "25.3",
+    "endPi": "25.4",
+    "parentId": "goal-3",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-2-feature-1",
+    "title": "Dashboard framework",
+    "owner": "Sinko de Mayo",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-3-scope-2",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-2-feature-2",
+    "title": "Report builder",
+    "owner": "Streamtroopers",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-3-scope-2",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-2-feature-3",
+    "title": "Data visualization library",
+    "owner": "Staunchwarriors",
+    "startPi": "25.3",
+    "endPi": "25.4",
+    "parentId": "goal-3-scope-2",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-2-feature-4",
+    "title": "Scheduled reports",
+    "owner": "Code Genies",
+    "startPi": "25.4",
+    "endPi": "25.4",
+    "parentId": "goal-3-scope-2",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-2-feature-5",
+    "title": "Export functionality",
+    "owner": "Datagenics",
+    "startPi": "25.4",
+    "endPi": "25.4",
+    "parentId": "goal-3-scope-2",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-3",
+    "title": "Real-time Analytics",
+    "owner": "Pioneers",
+    "startPi": "25.3",
+    "endPi": "25.4",
+    "parentId": "goal-3",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-3-feature-1",
+    "title": "Stream processing setup",
+    "owner": "Sparky",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-3-scope-3",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-3-feature-2",
+    "title": "Event tracking system",
+    "owner": "Sinko de Mayo",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-3-scope-3",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-3-feature-3",
+    "title": "Real-time aggregation",
+    "owner": "Streamtroopers",
+    "startPi": "25.3",
+    "endPi": "25.4",
+    "parentId": "goal-3-scope-3",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-3-feature-4",
+    "title": "Alert system",
+    "owner": "Staunchwarriors",
+    "startPi": "25.4",
+    "endPi": "25.4",
+    "parentId": "goal-3-scope-3",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-3-feature-5",
+    "title": "Live dashboard updates",
+    "owner": "Code Genies",
+    "startPi": "25.4",
+    "endPi": "25.4",
+    "parentId": "goal-3-scope-3",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-4",
+    "title": "Predictive Analytics",
+    "owner": "Datagenics",
+    "startPi": "25.4",
+    "endPi": "25.5",
+    "parentId": "goal-3",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-4-feature-1",
+    "title": "ML infrastructure",
+    "owner": "Pioneers",
+    "startPi": "25.4",
+    "endPi": "25.4",
+    "parentId": "goal-3-scope-4",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-4-feature-2",
+    "title": "Feature engineering",
+    "owner": "Sparky",
+    "startPi": "25.4",
+    "endPi": "25.4",
+    "parentId": "goal-3-scope-4",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-4-feature-3",
+    "title": "Model training pipeline",
+    "owner": "Sinko de Mayo",
+    "startPi": "25.4",
+    "endPi": "25.5",
+    "parentId": "goal-3-scope-4",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-4-feature-4",
+    "title": "Prediction API",
+    "owner": "Streamtroopers",
+    "startPi": "25.5",
+    "endPi": "25.5",
+    "parentId": "goal-3-scope-4",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-4-feature-5",
+    "title": "Model monitoring",
+    "owner": "Staunchwarriors",
+    "startPi": "25.5",
+    "endPi": "25.5",
+    "parentId": "goal-3-scope-4",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-5",
+    "title": "Data Governance",
+    "owner": "Code Genies",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-3",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-3-scope-5-feature-1",
+    "title": "Data catalog",
+    "owner": "Datagenics",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-3-scope-5",
+    "status": "completed"
+  },
+  {
+    "id": "goal-3-scope-5-feature-2",
+    "title": "Access control policies",
+    "owner": "Pioneers",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-3-scope-5",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-3-scope-5-feature-3",
+    "title": "Data lineage tracking",
+    "owner": "Sparky",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-3-scope-5",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-3-scope-5-feature-4",
+    "title": "Compliance reporting",
+    "owner": "Sinko de Mayo",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-3-scope-5",
+    "status": "planned"
+  },
+  {
+    "id": "goal-3-scope-5-feature-5",
+    "title": "Audit trails",
+    "owner": "Streamtroopers",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-3-scope-5",
+    "status": "planned"
   },
   {
     "id": "goal-4",
@@ -954,313 +843,276 @@
     "startPi": "",
     "endPi": "",
     "parentId": "",
-    "status": "",
-    "children": [
-      {
-        "id": "goal-4-scope-1",
-        "title": "Marketplace Integration",
-        "owner": "Staunchwarriors",
-        "startPi": "25.1",
-        "endPi": "25.2",
-        "parentId": "goal-4",
-        "status": "completed",
-        "children": [
-          {
-            "id": "goal-4-scope-1-feature-1",
-            "title": "Seller onboarding",
-            "owner": "Code Genies",
-            "startPi": "25.1",
-            "endPi": "25.1",
-            "parentId": "goal-4-scope-1",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-1-feature-2",
-            "title": "Product listing management",
-            "owner": "Datagenics",
-            "startPi": "25.1",
-            "endPi": "25.1",
-            "parentId": "goal-4-scope-1",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-1-feature-3",
-            "title": "Commission system",
-            "owner": "Pioneers",
-            "startPi": "25.1",
-            "endPi": "25.2",
-            "parentId": "goal-4-scope-1",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-1-feature-4",
-            "title": "Seller dashboard",
-            "owner": "Sparky",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-4-scope-1",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-1-feature-5",
-            "title": "Review and rating system",
-            "owner": "Sinko de Mayo",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-4-scope-1",
-            "status": "completed",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "goal-4-scope-2",
-        "title": "International Shipping",
-        "owner": "Streamtroopers",
-        "startPi": "25.2",
-        "endPi": "25.3",
-        "parentId": "goal-4",
-        "status": "in-progress",
-        "children": [
-          {
-            "id": "goal-4-scope-2-feature-1",
-            "title": "Multi-currency support",
-            "owner": "Staunchwarriors",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-4-scope-2",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-2-feature-2",
-            "title": "Customs documentation",
-            "owner": "Code Genies",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-4-scope-2",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-2-feature-3",
-            "title": "Carrier integrations",
-            "owner": "Datagenics",
-            "startPi": "25.2",
-            "endPi": "25.3",
-            "parentId": "goal-4-scope-2",
-            "status": "in-progress",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-2-feature-4",
-            "title": "Tax calculation",
-            "owner": "Pioneers",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-4-scope-2",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-2-feature-5",
-            "title": "Shipping rate calculator",
-            "owner": "Sparky",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-4-scope-2",
-            "status": "planned",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "goal-4-scope-3",
-        "title": "Subscription Service",
-        "owner": "Sinko de Mayo",
-        "startPi": "25.3",
-        "endPi": "25.4",
-        "parentId": "goal-4",
-        "status": "planned",
-        "children": [
-          {
-            "id": "goal-4-scope-3-feature-1",
-            "title": "Subscription plans",
-            "owner": "Streamtroopers",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-4-scope-3",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-3-feature-2",
-            "title": "Recurring billing",
-            "owner": "Staunchwarriors",
-            "startPi": "25.3",
-            "endPi": "25.3",
-            "parentId": "goal-4-scope-3",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-3-feature-3",
-            "title": "Subscription management",
-            "owner": "Code Genies",
-            "startPi": "25.3",
-            "endPi": "25.4",
-            "parentId": "goal-4-scope-3",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-3-feature-4",
-            "title": "Cancellation flow",
-            "owner": "Datagenics",
-            "startPi": "25.4",
-            "endPi": "25.4",
-            "parentId": "goal-4-scope-3",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-3-feature-5",
-            "title": "Subscription analytics",
-            "owner": "Pioneers",
-            "startPi": "25.4",
-            "endPi": "25.4",
-            "parentId": "goal-4-scope-3",
-            "status": "planned",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "goal-4-scope-4",
-        "title": "Inventory Management",
-        "owner": "Sparky",
-        "startPi": "25.1",
-        "endPi": "25.2",
-        "parentId": "goal-4",
-        "status": "completed",
-        "children": [
-          {
-            "id": "goal-4-scope-4-feature-1",
-            "title": "Stock tracking system",
-            "owner": "Sinko de Mayo",
-            "startPi": "25.1",
-            "endPi": "25.1",
-            "parentId": "goal-4-scope-4",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-4-feature-2",
-            "title": "Warehouse management",
-            "owner": "Streamtroopers",
-            "startPi": "25.1",
-            "endPi": "25.1",
-            "parentId": "goal-4-scope-4",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-4-feature-3",
-            "title": "Auto-reorder system",
-            "owner": "Staunchwarriors",
-            "startPi": "25.1",
-            "endPi": "25.2",
-            "parentId": "goal-4-scope-4",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-4-feature-4",
-            "title": "Low stock alerts",
-            "owner": "Code Genies",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-4-scope-4",
-            "status": "completed",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-4-feature-5",
-            "title": "Inventory reports",
-            "owner": "Datagenics",
-            "startPi": "25.2",
-            "endPi": "25.2",
-            "parentId": "goal-4-scope-4",
-            "status": "completed",
-            "children": []
-          }
-        ]
-      },
-      {
-        "id": "goal-4-scope-5",
-        "title": "AR Shopping Experience",
-        "owner": "Pioneers",
-        "startPi": "25.4",
-        "endPi": "25.6",
-        "parentId": "goal-4",
-        "status": "planned",
-        "children": [
-          {
-            "id": "goal-4-scope-5-feature-1",
-            "title": "3D product models",
-            "owner": "Sparky",
-            "startPi": "25.4",
-            "endPi": "25.4",
-            "parentId": "goal-4-scope-5",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-5-feature-2",
-            "title": "AR viewer app",
-            "owner": "Sinko de Mayo",
-            "startPi": "25.4",
-            "endPi": "25.5",
-            "parentId": "goal-4-scope-5",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-5-feature-3",
-            "title": "Virtual try-on",
-            "owner": "Streamtroopers",
-            "startPi": "25.5",
-            "endPi": "25.5",
-            "parentId": "goal-4-scope-5",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-5-feature-4",
-            "title": "Room visualization",
-            "owner": "Staunchwarriors",
-            "startPi": "25.5",
-            "endPi": "25.6",
-            "parentId": "goal-4-scope-5",
-            "status": "planned",
-            "children": []
-          },
-          {
-            "id": "goal-4-scope-5-feature-5",
-            "title": "Social sharing integration",
-            "owner": "Code Genies",
-            "startPi": "25.6",
-            "endPi": "25.6",
-            "parentId": "goal-4-scope-5",
-            "status": "planned",
-            "children": []
-          }
-        ]
-      }
-    ]
+    "status": ""
+  },
+  {
+    "id": "goal-4-scope-1",
+    "title": "Marketplace Integration",
+    "owner": "Staunchwarriors",
+    "startPi": "25.1",
+    "endPi": "25.2",
+    "parentId": "goal-4",
+    "status": "completed"
+  },
+  {
+    "id": "goal-4-scope-1-feature-1",
+    "title": "Seller onboarding",
+    "owner": "Code Genies",
+    "startPi": "25.1",
+    "endPi": "25.1",
+    "parentId": "goal-4-scope-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-4-scope-1-feature-2",
+    "title": "Product listing management",
+    "owner": "Datagenics",
+    "startPi": "25.1",
+    "endPi": "25.1",
+    "parentId": "goal-4-scope-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-4-scope-1-feature-3",
+    "title": "Commission system",
+    "owner": "Pioneers",
+    "startPi": "25.1",
+    "endPi": "25.2",
+    "parentId": "goal-4-scope-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-4-scope-1-feature-4",
+    "title": "Seller dashboard",
+    "owner": "Sparky",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-4-scope-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-4-scope-1-feature-5",
+    "title": "Review and rating system",
+    "owner": "Sinko de Mayo",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-4-scope-1",
+    "status": "completed"
+  },
+  {
+    "id": "goal-4-scope-2",
+    "title": "International Shipping",
+    "owner": "Streamtroopers",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-4",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-4-scope-2-feature-1",
+    "title": "Multi-currency support",
+    "owner": "Staunchwarriors",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-4-scope-2",
+    "status": "completed"
+  },
+  {
+    "id": "goal-4-scope-2-feature-2",
+    "title": "Customs documentation",
+    "owner": "Code Genies",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-4-scope-2",
+    "status": "completed"
+  },
+  {
+    "id": "goal-4-scope-2-feature-3",
+    "title": "Carrier integrations",
+    "owner": "Datagenics",
+    "startPi": "25.2",
+    "endPi": "25.3",
+    "parentId": "goal-4-scope-2",
+    "status": "in-progress"
+  },
+  {
+    "id": "goal-4-scope-2-feature-4",
+    "title": "Tax calculation",
+    "owner": "Pioneers",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-4-scope-2",
+    "status": "planned"
+  },
+  {
+    "id": "goal-4-scope-2-feature-5",
+    "title": "Shipping rate calculator",
+    "owner": "Sparky",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-4-scope-2",
+    "status": "planned"
+  },
+  {
+    "id": "goal-4-scope-3",
+    "title": "Subscription Service",
+    "owner": "Sinko de Mayo",
+    "startPi": "25.3",
+    "endPi": "25.4",
+    "parentId": "goal-4",
+    "status": "planned"
+  },
+  {
+    "id": "goal-4-scope-3-feature-1",
+    "title": "Subscription plans",
+    "owner": "Streamtroopers",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-4-scope-3",
+    "status": "planned"
+  },
+  {
+    "id": "goal-4-scope-3-feature-2",
+    "title": "Recurring billing",
+    "owner": "Staunchwarriors",
+    "startPi": "25.3",
+    "endPi": "25.3",
+    "parentId": "goal-4-scope-3",
+    "status": "planned"
+  },
+  {
+    "id": "goal-4-scope-3-feature-3",
+    "title": "Subscription management",
+    "owner": "Code Genies",
+    "startPi": "25.3",
+    "endPi": "25.4",
+    "parentId": "goal-4-scope-3",
+    "status": "planned"
+  },
+  {
+    "id": "goal-4-scope-3-feature-4",
+    "title": "Cancellation flow",
+    "owner": "Datagenics",
+    "startPi": "25.4",
+    "endPi": "25.4",
+    "parentId": "goal-4-scope-3",
+    "status": "planned"
+  },
+  {
+    "id": "goal-4-scope-3-feature-5",
+    "title": "Subscription analytics",
+    "owner": "Pioneers",
+    "startPi": "25.4",
+    "endPi": "25.4",
+    "parentId": "goal-4-scope-3",
+    "status": "planned"
+  },
+  {
+    "id": "goal-4-scope-4",
+    "title": "Inventory Management",
+    "owner": "Sparky",
+    "startPi": "25.1",
+    "endPi": "25.2",
+    "parentId": "goal-4",
+    "status": "completed"
+  },
+  {
+    "id": "goal-4-scope-4-feature-1",
+    "title": "Stock tracking system",
+    "owner": "Sinko de Mayo",
+    "startPi": "25.1",
+    "endPi": "25.1",
+    "parentId": "goal-4-scope-4",
+    "status": "completed"
+  },
+  {
+    "id": "goal-4-scope-4-feature-2",
+    "title": "Warehouse management",
+    "owner": "Streamtroopers",
+    "startPi": "25.1",
+    "endPi": "25.1",
+    "parentId": "goal-4-scope-4",
+    "status": "completed"
+  },
+  {
+    "id": "goal-4-scope-4-feature-3",
+    "title": "Auto-reorder system",
+    "owner": "Staunchwarriors",
+    "startPi": "25.1",
+    "endPi": "25.2",
+    "parentId": "goal-4-scope-4",
+    "status": "completed"
+  },
+  {
+    "id": "goal-4-scope-4-feature-4",
+    "title": "Low stock alerts",
+    "owner": "Code Genies",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-4-scope-4",
+    "status": "completed"
+  },
+  {
+    "id": "goal-4-scope-4-feature-5",
+    "title": "Inventory reports",
+    "owner": "Datagenics",
+    "startPi": "25.2",
+    "endPi": "25.2",
+    "parentId": "goal-4-scope-4",
+    "status": "completed"
+  },
+  {
+    "id": "goal-4-scope-5",
+    "title": "AR Shopping Experience",
+    "owner": "Pioneers",
+    "startPi": "25.4",
+    "endPi": "25.6",
+    "parentId": "goal-4",
+    "status": "planned"
+  },
+  {
+    "id": "goal-4-scope-5-feature-1",
+    "title": "3D product models",
+    "owner": "Sparky",
+    "startPi": "25.4",
+    "endPi": "25.4",
+    "parentId": "goal-4-scope-5",
+    "status": "planned"
+  },
+  {
+    "id": "goal-4-scope-5-feature-2",
+    "title": "AR viewer app",
+    "owner": "Sinko de Mayo",
+    "startPi": "25.4",
+    "endPi": "25.5",
+    "parentId": "goal-4-scope-5",
+    "status": "planned"
+  },
+  {
+    "id": "goal-4-scope-5-feature-3",
+    "title": "Virtual try-on",
+    "owner": "Streamtroopers",
+    "startPi": "25.5",
+    "endPi": "25.5",
+    "parentId": "goal-4-scope-5",
+    "status": "planned"
+  },
+  {
+    "id": "goal-4-scope-5-feature-4",
+    "title": "Room visualization",
+    "owner": "Staunchwarriors",
+    "startPi": "25.5",
+    "endPi": "25.6",
+    "parentId": "goal-4-scope-5",
+    "status": "planned"
+  },
+  {
+    "id": "goal-4-scope-5-feature-5",
+    "title": "Social sharing integration",
+    "owner": "Code Genies",
+    "startPi": "25.6",
+    "endPi": "25.6",
+    "parentId": "goal-4-scope-5",
+    "status": "planned"
   }
 ]

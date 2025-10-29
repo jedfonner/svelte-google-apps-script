@@ -18,7 +18,22 @@
 
   let owners = $derived(getAllOwners(items));
 
-  let idLevelMap = $state(new Map<string, number>());
+  let idLevelMap = $derived.by(() => {
+      const map = new Map<string, number>();
+      items.forEach(item => {
+        if (!item.parentId) {
+          map.set(item.id, 0);
+        } else if (map.has(item.parentId)) {
+          const parentLevel = map.get(item.parentId) ?? 1;
+          map.set(item.id, parentLevel+1);
+        }
+      });
+
+      return map;
+    }
+  );
+  $inspect('items', items);
+  $inspect('idLevelMap', idLevelMap);
 
   let filter = $state({
     title: '',
@@ -48,39 +63,14 @@
     return false;
   }
 
-  // Flatten the tree structure to display all items
-  function flattenItems(items: RoadmapItem[], level = 0): Array<RoadmapItem> {
-    let result: Array<RoadmapItem> = [];
-    for (const item of items) {
-      result.push(item);
-      idLevelMap.set(item.id, level);
-      if (item.children && item.children.length > 0) {
-        result = result.concat(flattenItems(item.children, level + 1));
-      }
-    }
-    return result;
-  }
-
   function getAllOwners(items: RoadmapItem[]): string[] {
     const ownersSet = new Set<string>();
-    function extractOwners(items: RoadmapItem[]) {
-      for (const item of items) {
-        if (item.owner) {
-          ownersSet.add(item.owner);
-        }
-        if (item.children && item.children.length > 0) {
-          extractOwners(item.children);
-        }
-      }
-    }
-    extractOwners(items);
+    items.filter(item =>!!item.owner).forEach(item => ownersSet.add(item.owner!));
     return Array.from(ownersSet);
   }
 
-  const flatItems = $derived(flattenItems(items));
-
   let filteredItems = $derived.by(() => {
-    return flatItems.filter(item => {
+    return items.filter(item => {
       const matchesTitle = filter.title === '' || item.title.toLowerCase().includes(filter.title.toLowerCase());
       const matchesOwner = filter.owner === '' || item.owner === '' || item.owner === filter.owner;
       const matchesStatus = filter.status === '' || item.status === '' || item.status === filter.status;
