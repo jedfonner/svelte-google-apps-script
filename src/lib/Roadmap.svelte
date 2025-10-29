@@ -48,11 +48,16 @@
   ];
 
   async function updateSpreadsheet(item:RoadmapItem): Promise<boolean> {
-    console.log('Updating item in spreadsheet:', item);
+    console.log('Updating item in spreadsheet:', $state.snapshot(item));
+    // @ts-ignore
+    if (!globalThis.inGAS) {
+      console.warn('Not running in GAS environment. Skipping update.');
+      return false;
+    }
     try {
       // @ts-ignore
       await google.script.run.withSuccessHandler((response:boolean) => {
-        console.log('Server response:', response);
+        console.log(`Spreadsheet ${response ? "successfully updated" : "failed to update"}`);
         return response;
       }).withFailureHandler((error:any) => {
         console.error('Error updating spreadsheet:', error);

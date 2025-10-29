@@ -9,6 +9,11 @@
   </head>
   <body>
     <div id="app"></div>
+    <script>
+      // Indicate that we are running in a Google Apps Script environment
+      // Helps to prevent errors when developing locally
+      globalThis.inGAS = true;
+    </script>
     <?!= include("Javascript"); ?>
   </body>
 </html>

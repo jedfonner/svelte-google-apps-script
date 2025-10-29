@@ -11,18 +11,9 @@
   });
 
   const getDataFromServer = async () => {
-    try {
-      // @ts-ignore
-      await google.script.run.withSuccessHandler((response) => {
-        console.log('Server response:', response);
-        status = "loaded"
-        items = structuredClone(response) as RoadmapItem[];
-      }).withFailureHandler((error:any) => {
-        console.error('Error invoking server function:', error);
-        alert('Failed to invoke server function.');
-      }).getRoadmapData();
-    } catch (error) {
-      console.warn('google.script.run is not available. Running in local mode.');
+    // @ts-ignore
+    if (!globalThis.inGAS) {
+      console.warn('Not running in GAS environment. Loading local data.');
       try {
         import('./roadmap-data.json').then((module) => {
           items = module.default as RoadmapItem[];
@@ -31,14 +22,23 @@
       } catch (jsonError) {
         console.error('Error loading local JSON data:', jsonError);
         status = "error"
-        return;
       }
+      return;
     }
+    // @ts-ignore
+    await google.script.run.withSuccessHandler((response) => {
+      console.log('Loaded data from Spreadsheet', response);
+      status = "loaded"
+      items = structuredClone(response) as RoadmapItem[];
+    }).withFailureHandler((error:any) => {
+      console.error('Error invoking server function:', error);
+      alert('Failed to invoke server function.');
+    }).getRoadmapData();
   }
 </script>
 
 <main>
-  <h1>Roadmap v1.6</h1>
+  <h1>Roadmap v1.7.1</h1>
   {#if status === 'loading'}
     <p>Loading...</p>
   {:else if status === 'error'}
