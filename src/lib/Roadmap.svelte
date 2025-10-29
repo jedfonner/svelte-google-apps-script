@@ -187,17 +187,19 @@
       <div class="cell title level-0" style="grid-row: {index+ROW_START_INDEX}; grid-column: 1 / -1;">
           <span>↳&nbsp;</span>
           <Textbox bind:value={item.title} onChange={() => updateSpreadsheet(item)} />
-          <Button size="small" onclick={() => addChildItem(item)}>+</Button>
+          <div class="button">
+            <Button size="small" onclick={() => addChildItem(item)}>+</Button>
+          </div>
       </div>
     {:else}
       <div class="cell title level-{level}" style="grid-row: {index+ROW_START_INDEX}; grid-column: 1;">
           <span>↳&nbsp;</span>
           <Textbox bind:value={item.title} onChange={() => updateSpreadsheet(item)} />
           {#if level < 2}
-          <Button size="small" onclick={() => addChildItem(item)} title="Add" style="positive">+</Button>
+            <div class="button"><Button size="small" onclick={() => addChildItem(item)} title="Add" style="positive">+</Button></div>
           {/if}
           {#if !hasChildren(item)}
-          <Button size="small" onclick={() => removeItem(item)} title="Delete" style="negative">X</Button>
+            <div class="button"><Button size="small" onclick={() => removeItem(item)} title="Delete" style="negative">X</Button></div>
           {/if}
       </div>
     {/if}
@@ -304,12 +306,16 @@
   .cell.level-1 {
     font-size: 1rem;
     padding-left: 1rem;
-
   }
   .cell.level-2 {
     padding-left: 1.5rem;
   }
-
+  .cell .button {
+    visibility: hidden
+  }
+  .cell:hover .button {
+    visibility: visible;
+  }
   @media (max-width: 1200px) {
     .roadmap {
       font-size: 12px;

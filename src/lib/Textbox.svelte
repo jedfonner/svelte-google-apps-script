@@ -23,7 +23,7 @@
 
 <style>
   .field.display {
-    min-width: 90%;
+    min-width: 50px;
     min-height: 50%;
     cursor: pointer;
   }
