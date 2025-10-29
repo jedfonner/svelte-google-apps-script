@@ -175,7 +175,7 @@
     color: white;
     padding: 12px 8px;
     font-weight: bold;
-    text-align: center;
+    text-align: start;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -183,6 +183,7 @@
 
   .header.pi {
     background-color: #34495e;
+    text-align: center;
   }
   .filter {
     background-color: #f4f4f4;
