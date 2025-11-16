@@ -1,23 +1,27 @@
 <script lang="ts">
-  import svelteLogo from './assets/svelte.svg'
-  import gasLogo from './assets/appsscript.svg'
-  import Counter from './lib/Counter.svelte'
+  import svelteLogo from './assets/svelte.svg';
+  import gasLogo from './assets/appsscript.svg';
+  import Counter from './lib/Counter.svelte';
 
   const invokeServerFunction = async () => {
     try {
-      // @ts-ignore
-      const result = await google.script.run.withSuccessHandler((response) => {
-        console.log('Server response:', response);
-        alert('Server function invoked successfully!');
-      }).withFailureHandler((error:any) => {
-        console.error('Error invoking server function:', error);
-        alert('Failed to invoke server function.');
-      }).testInvokationFromClient(); // Replace 'serverFunction' with your actual server function name
+      const result = await google.script.run
+        .withSuccessHandler((response: void) => {
+          // the response is void because testInvokationFromClient does not return anything
+          // update the type if your server function returns a value
+          console.log('Server response:', response);
+          alert('Server function invoked successfully!');
+        })
+        .withFailureHandler((error: GasError) => {
+          console.error('Error invoking server function:', error);
+          alert('Failed to invoke server function.');
+        })
+        .testInvokationFromClient(); // Replace 'serverFunction' with your actual server function name
     } catch (error) {
       console.error('Unexpected error:', error);
       alert('An unexpected error occurred.');
     }
-  }
+  };
 </script>
 
 <main>
@@ -28,7 +32,6 @@
     <a href="https://developers.google.com/apps-script/" target="_blank" rel="noreferrer">
       <img src={gasLogo} class="logo gas" alt="Google Apps Script Logo" />
     </a>
-
   </div>
   <h1>Svelte + Google Apps Script</h1>
 
@@ -39,9 +42,7 @@
     <button onclick={invokeServerFunction}>Invoke Server Function</button>
   </div>
 
-  <p class="read-the-docs">
-    Click on the logos to learn more
-  </p>
+  <p class="read-the-docs">Click on the logos to learn more</p>
 </main>
 
 <style>
