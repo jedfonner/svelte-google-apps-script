@@ -11,11 +11,11 @@
   {
     "id": "goal-1-scope-1",
     "title": "Cloud Migration Phase 1",
-    "owner": "Code Genies",
-    "startPi": "25.1",
-    "endPi": "25.2",
+    "owner": "",
+    "startPi": "",
+    "endPi": "",
     "parentId": "goal-1",
-    "status": "completed"
+    "status": ""
   },
   {
     "id": "goal-1-scope-1-feature-1",
