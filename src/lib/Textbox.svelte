@@ -5,18 +5,45 @@
   let { value = $bindable(), onChange } = $props();
 
   let isEditable = $state(false);
+
+  function handleOnKeyDown(event: KeyboardEvent) {
+    event.preventDefault();
+    if (event.key === 'Enter') {
+      isEditable = false;
+      onChange && onChange();
+    } else if (event.key == 'Escape') {
+      isEditable = false;
+    }
+  }
 </script>
+
 {#if isEditable}
   <!-- svelte-ignore a11y_autofocus -->
-  <input class="field editable" type="text" bind:value={value}
-        autofocus
-        onfocusout={() => {isEditable = false; onChange && onChange()}}
-        onkeydown={(e) => { if (e.key === 'Enter') { e.preventDefault(); isEditable = false; onChange && onChange() }}} />
+  <input
+    class="field editable"
+    type="text"
+    bind:value
+    autofocus
+    onfocusout={() => {
+      isEditable = false;
+      onChange && onChange();
+    }}
+    onkeydown={handleOnKeyDown}
+  />
 {:else}
-  <div class="field display" role="button" tabindex="0"
+  <div
+    class="field display"
+    role="button"
+    tabindex="0"
     title="Click to edit"
-    onclick={() => isEditable = true}
-    onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); isEditable = true; } }} >
+    onclick={() => (isEditable = true)}
+    onkeydown={(e) => {
+      if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') {
+        e.preventDefault();
+        isEditable = true;
+      }
+    }}
+  >
     {value}
   </div>
 {/if}
@@ -28,7 +55,6 @@
     cursor: pointer;
   }
   .field.editable {
-    width:90%;
-
+    width: 90%;
   }
 </style>

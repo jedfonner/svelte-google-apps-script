@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { Attachment } from 'svelte/attachments';
+
   interface Option {
     label: string;
     value: string;
@@ -10,8 +12,38 @@
   let { options, value = $bindable(), onChange } = $props();
 
   function getDisplayValue(value: string): string {
-    const option = options.find((opt: { value: string; }) => opt.value === value);
+    const option = options.find((opt: { value: string }) => opt.value === value);
     return option ? option.label : value;
+  }
+  function handleOnKeyDown(event: KeyboardEvent) {
+    event.preventDefault();
+    if (event.key === 'Enter') {
+      isEditable = false;
+      onChange && onChange();
+    } else if (event.key == 'Escape') {
+      isEditable = false;
+    }
+  }
+
+  function clickOutside(node: HTMLElement) {
+    console.log('attach clickOutside');
+    const handleClick = (event: MouseEvent) => {
+      if (!node.contains(event.target as Node)) {
+        console.log('click outside');
+        isEditable = false;
+      }
+    };
+    document.addEventListener('click', handleClick, true);
+    return () => {
+      document.removeEventListener('click', handleClick, true);
+    };
+  }
+  function selectKeydown(node: HTMLElement) {
+    console.log('attach selectKeydown');
+    document.addEventListener('keydown', handleOnKeyDown, true);
+    return () => {
+      document.removeEventListener('keydown', handleOnKeyDown, true);
+    };
   }
 
   let isEditable = $state(false);
@@ -19,20 +51,29 @@
 
 {#if isEditable}
   <!-- svelte-ignore a11y_autofocus -->
-  <select class="dropdown editable"  bind:value={value}
-        onfocusout={() => {isEditable = false; onChange && onChange()}}
-        onkeydown={(e) => { console.log("keydown", e.key); if (e.key === 'Enter') { e.preventDefault(); isEditable = false; onChange && onChange()}}}
-        onchange={() => {isEditable = false; onChange && onChange()}}
-        >
+  <select
+    bind:value
+    {@attach clickOutside}
+    {@attach selectKeydown}
+    class="dropdown editable"
+    onchange={() => {
+      isEditable = false;
+      onChange && onChange();
+    }}
+  >
     {#each options as option}
       <option value={option.value}>{option.label}</option>
     {/each}
   </select>
 {:else}
-  <div class="dropdown display" role="button" tabindex="0"
+  <div
+    class="dropdown display"
+    role="button"
+    tabindex="0"
     title="Click to edit"
-    onclick={() => isEditable = true}
-    onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar') { e.preventDefault(); isEditable = true; } }} >
+    onclick={() => (isEditable = true)}
+    onkeydown={handleOnKeyDown}
+  >
     {getDisplayValue(value)}
   </div>
 {/if}
@@ -42,6 +83,6 @@
     cursor: pointer;
   }
   .dropdown {
-    width:90%;
+    width: 90%;
   }
 </style>
