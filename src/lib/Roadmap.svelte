@@ -257,7 +257,12 @@
         <span>↳&nbsp;</span>
         <Textbox bind:value={item.title} onChange={() => updateSpreadsheet(item)} />
         <div class="button">
-          <Button size="small" onclick={() => addChildItem(item)}>+</Button>
+          <Button
+            size="small"
+            onclick={() => addChildItem(item)}
+            title="Add Child Item"
+            style="positive">+</Button
+          >
         </div>
       </div>
     {:else if level === 1}
@@ -268,8 +273,11 @@
         <span>↳&nbsp;</span>
         <Textbox bind:value={item.title} onChange={() => updateSpreadsheet(item)} />
         <div class="button">
-          <Button size="small" onclick={() => addChildItem(item)} title="Add" style="positive"
-            >+</Button
+          <Button
+            size="small"
+            onclick={() => addChildItem(item)}
+            title="Add Child Item"
+            style="positive">+</Button
           >
         </div>
         {#if !hasChildren(item)}
@@ -426,7 +434,7 @@
   .cell.level-1 {
     background-color: #dfe7fb;
   }
-  .cell.title:not(.level-0) {
+  .cell.title {
     display: grid;
     grid-template-columns: auto 1fr auto auto;
     padding-right: 4px;
