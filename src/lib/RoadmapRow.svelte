@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { PIs, ROW_START_INDEX, COLUMN_START_INDEX, STATUS_OPTIONS } from './Config.svelte';
+  import { ROW_START_INDEX, COLUMN_START_INDEX, STATUS_OPTIONS } from './Config.svelte';
   import type { RoadmapItem } from '../types';
   import Button from './Button.svelte';
   import CollapseToggle from './CollapseToggle.svelte';
@@ -18,6 +18,7 @@
     computedStatus: string;
     computedDuration: { startPi: string; endPi: string } | null;
     hasChildren: boolean;
+    PIs: string[];
   }
   let {
     item = $bindable(),
@@ -30,6 +31,7 @@
     computedStatus,
     computedDuration,
     hasChildren,
+    PIs,
   }: Props = $props();
 </script>
 
@@ -126,6 +128,7 @@
 
 {#if level <= 1}
   <TimelineBar
+    {PIs}
     startPi={computedDuration ? computedDuration.startPi : item.startPi}
     endPi={computedDuration ? computedDuration.endPi : item.endPi}
     status={computedStatus ? computedStatus : item.status}
@@ -136,6 +139,7 @@
 {:else}
   <!-- ignore warnings about binding to non-reactive property-->
   <TimelineBar
+    {PIs}
     bind:startPi={item.startPi}
     bind:endPi={item.endPi}
     status={item.status}

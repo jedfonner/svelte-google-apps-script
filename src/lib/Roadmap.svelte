@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { RoadmapItem } from '../types';
-  import { PIs, COLUMN_START_INDEX } from './Config.svelte';
+  import { COLUMN_START_INDEX } from './Config.svelte';
   import RoadmapRow from './RoadmapRow.svelte';
 
   interface Props {
@@ -10,6 +10,17 @@
   let { items = $bindable() }: Props = $props();
 
   let owners = $derived(getAllOwners(items));
+
+  let PIs = $derived.by(() => {
+    // Extract unique PIs from items
+    const piSet = new Set<string>();
+    items.forEach((item) => {
+      if (item.startPi) piSet.add(item.startPi);
+      if (item.endPi) piSet.add(item.endPi);
+    });
+    // Sort PIs
+    return Array.from(piSet).sort();
+  });
 
   let idLevelMap = $derived.by(() => {
     const map = new Map<string, number>();
@@ -205,7 +216,7 @@
   }
 </script>
 
-<div class="roadmap">
+<div class="roadmap" style="--num-PIs: {PIs.length};">
   <!-- Header Row -->
   <div class="header" style="grid-row: 1; grid-column: 1;">Title</div>
   <div class="header" style="grid-row: 1; grid-column: 2;">Owner</div>
@@ -260,6 +271,7 @@
       {computedStatus}
       {computedDuration}
       {hasChildren}
+      {PIs}
       {updateSpreadsheet}
       {addChildItem}
       {removeItem}
@@ -271,7 +283,7 @@
 <style>
   .roadmap {
     display: grid;
-    grid-template-columns: 300px 150px 150px repeat(6, 1fr);
+    grid-template-columns: 300px 150px 150px repeat(var(--num-PIs), 1fr);
     grid-auto-rows: 40px;
     gap: 1px;
     background-color: #ddd;
