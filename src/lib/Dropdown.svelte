@@ -26,10 +26,8 @@
   }
 
   function clickOutside(node: HTMLElement) {
-    console.log('attach clickOutside');
     const handleClick = (event: MouseEvent) => {
       if (!node.contains(event.target as Node)) {
-        console.log('click outside');
         isEditable = false;
       }
     };
@@ -39,7 +37,6 @@
     };
   }
   function selectKeydown(node: HTMLElement) {
-    console.log('attach selectKeydown');
     document.addEventListener('keydown', handleOnKeyDown, true);
     return () => {
       document.removeEventListener('keydown', handleOnKeyDown, true);
