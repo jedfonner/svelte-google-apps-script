@@ -9,7 +9,10 @@
   let status = $state('loading');
   let items: RoadmapItem[] = $state([]);
 
+  let title = $state('');
+
   onMount(() => {
+    title = window.document.title;
     getDataFromServer();
   });
 
@@ -44,7 +47,10 @@
 </script>
 
 <main>
-  <h1>Roadmap v{version}</h1>
+  <header>
+    <h1>{title ? title : 'Roadmap'}</h1>
+    <span class="version">v{version}</span>
+  </header>
   {#if status === 'loading'}
     <p>Loading...</p>
   {:else if status === 'error'}
@@ -63,11 +69,16 @@
     flex-direction: column;
     overflow: hidden;
   }
-
+  header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+  }
   h1 {
     flex-shrink: 0;
     margin: 0;
-    padding: 1rem;
   }
   p {
     padding: 1rem;
