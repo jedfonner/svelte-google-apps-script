@@ -1,11 +1,6 @@
 <script lang="ts">
   import type { RoadmapItem } from '../types';
-  import Button from './Button.svelte';
-  import CollapseToggle from './CollapseToggle.svelte';
-  import Dropdown from './Dropdown.svelte';
-  import Textbox from './Textbox.svelte';
-  import TimelineBar from './TimelineBar.svelte';
-  import { PIs, ROW_START_INDEX, COLUMN_START_INDEX, STATUS_OPTIONS } from './Config.svelte';
+  import { PIs, COLUMN_START_INDEX } from './Config.svelte';
   import RoadmapRow from './RoadmapRow.svelte';
 
   interface Props {
