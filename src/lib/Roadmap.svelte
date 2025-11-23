@@ -1,15 +1,12 @@
-<script module>
-  export const PIs = ['25.1', '25.2', '25.3', '25.4', '25.5', '25.6'];
-  export const ROW_START_INDEX = 3; // Because of header row
-  export const COLUMN_START_INDEX = 4; // Because of title, owner, status columns
-</script>
-
 <script lang="ts">
   import type { RoadmapItem } from '../types';
   import Button from './Button.svelte';
+  import CollapseToggle from './CollapseToggle.svelte';
   import Dropdown from './Dropdown.svelte';
   import Textbox from './Textbox.svelte';
   import TimelineBar from './TimelineBar.svelte';
+  import { PIs, ROW_START_INDEX, COLUMN_START_INDEX, STATUS_OPTIONS } from './Config.svelte';
+  import RoadmapRow from './RoadmapRow.svelte';
 
   interface Props {
     items: RoadmapItem[];
@@ -41,11 +38,35 @@
     status: '',
   });
 
-  const STATUS_OPTIONS = [
-    { label: 'Planned', value: 'planned' },
-    { label: 'In Progress', value: 'in-progress' },
-    { label: 'Completed', value: 'completed' },
-  ];
+  let hiddenItems = $state([] as string[]);
+
+  let filteredItems = $derived.by(() => {
+    return items.filter((item) => {
+      const isCollapsed = hiddenItems.includes(item.parentId);
+      const matchesTitle =
+        filter.title === '' || item.title.toLowerCase().includes(filter.title.toLowerCase());
+      const matchesOwner =
+        filter.owner === '' || item.owner === '' || item.owner === filter.owner;
+      const matchesStatus =
+        filter.status === '' || item.status === '' || item.status === filter.status;
+      return !isCollapsed && matchesTitle && matchesOwner && matchesStatus;
+    });
+  });
+
+  function toggleVisibility(itemId: string, isVisible: boolean): void {
+    console.log('Toggling collapse for item:', itemId, isVisible);
+    if (!isVisible) {
+      hiddenItems = [...hiddenItems, itemId];
+    } else {
+      hiddenItems = hiddenItems.filter((id) => id !== itemId);
+    }
+
+    items.forEach((item) => {
+      if (item.parentId === itemId) {
+        toggleVisibility(item.id, isVisible);
+      }
+    });
+  }
 
   async function updateSpreadsheet(item: RoadmapItem): Promise<boolean> {
     console.log('Updating item in spreadsheet:', $state.snapshot(item));
@@ -145,18 +166,6 @@
     return items.some((i) => i.parentId === item.id);
   }
 
-  let filteredItems = $derived.by(() => {
-    return items.filter((item) => {
-      const matchesTitle =
-        filter.title === '' || item.title.toLowerCase().includes(filter.title.toLowerCase());
-      const matchesOwner =
-        filter.owner === '' || item.owner === '' || item.owner === filter.owner;
-      const matchesStatus =
-        filter.status === '' || item.status === '' || item.status === filter.status;
-      return matchesTitle && matchesOwner && matchesStatus;
-    });
-  });
-
   function computeDurationFromChildren(
     item: RoadmapItem,
   ): { startPi: string; endPi: string } | null {
@@ -182,10 +191,10 @@
     };
   }
 
-  function computeStatusFromChildren(item: RoadmapItem): string | null {
+  function computeStatusFromChildren(item: RoadmapItem): string {
     const children = items.filter((i) => i.parentId === item.id);
     if (children.length === 0) {
-      return null;
+      return 'planned';
     }
     if (children.every((child) => child.status === 'completed')) {
       return 'completed';
@@ -247,134 +256,20 @@
   {#each filteredItems as item, index}
     {@const level = idLevelMap.get(item.id) ?? 0}
     {@const computedStatus = level <= 1 ? computeStatusFromChildren(item) : item.status}
-
-    <!-- Title -->
-    {#if level === 0}
-      <div
-        class="cell title level-0"
-        style="grid-row: {index + ROW_START_INDEX}; grid-column: 1 / 3;"
-      >
-        <span>↳&nbsp;</span>
-        <Textbox bind:value={item.title} onChange={() => updateSpreadsheet(item)} />
-        <div class="button">
-          <Button
-            size="small"
-            onclick={() => addChildItem(item)}
-            title="Add Child Item"
-            style="positive">+</Button
-          >
-        </div>
-      </div>
-    {:else if level === 1}
-      <div
-        class="cell title level-1"
-        style="grid-row: {index + ROW_START_INDEX}; grid-column: 1 / 3;"
-      >
-        <span>↳&nbsp;</span>
-        <Textbox bind:value={item.title} onChange={() => updateSpreadsheet(item)} />
-        <div class="button">
-          <Button
-            size="small"
-            onclick={() => addChildItem(item)}
-            title="Add Child Item"
-            style="positive">+</Button
-          >
-        </div>
-        {#if !hasChildren(item)}
-          <div class="button">
-            <Button
-              size="small"
-              onclick={() => removeItem(item)}
-              title="Delete"
-              style="negative">X</Button
-            >
-          </div>
-        {/if}
-      </div>
-    {:else}
-      <div
-        class="cell title level-{level}"
-        style="grid-row: {index + ROW_START_INDEX}; grid-column: 1;"
-      >
-        <span>↳&nbsp;</span>
-        <Textbox bind:value={item.title} onChange={() => updateSpreadsheet(item)} />
-        {#if level < 2}
-          <div class="button">
-            <Button
-              size="small"
-              onclick={() => addChildItem(item)}
-              title="Add"
-              style="positive">+</Button
-            >
-          </div>
-        {/if}
-        {#if !hasChildren(item)}
-          <div class="button">
-            <Button
-              size="small"
-              onclick={() => removeItem(item)}
-              title="Delete"
-              style="negative">X</Button
-            >
-          </div>
-        {/if}
-      </div>
-      <!-- Owner -->
-      <div class="cell owner" style="grid-row: {index + ROW_START_INDEX}; grid-column: 2;">
-        <Textbox bind:value={item.owner} onChange={() => updateSpreadsheet(item)} />
-      </div>
-    {/if}
-
-    <!-- Status -->
-    <div
-      class="cell status {computedStatus} level-{level}"
-      style="grid-row: {index + ROW_START_INDEX}; grid-column: 3;"
-    >
-      {#if level <= 1}
-        <span>{STATUS_OPTIONS.filter((item) => item.value === computedStatus)[0]?.label}</span>
-      {:else}
-        <Dropdown
-          bind:value={item.status}
-          options={STATUS_OPTIONS}
-          onChange={() => updateSpreadsheet(item)}
-        />
-      {/if}
-    </div>
-    <!-- Blank PI cells -->
-    {#each PIs as _, i}
-      <div
-        class="cell pi-cell level-{level}"
-        style="grid-row: {index + ROW_START_INDEX}; grid-column: {i + COLUMN_START_INDEX};"
-      ></div>
-    {/each}
-  {/each}
-
-  <!-- Timeline bars - overlay on top -->
-  {#each filteredItems as item, index}
-    {@const level = idLevelMap.get(item.id) ?? 0}
-
-    {#if level <= 1}
-      {@const computedDuration = computeDurationFromChildren(item)}
-      {@const computedStatus = computeStatusFromChildren(item)}
-
-      <TimelineBar
-        startPi={computedDuration ? computedDuration.startPi : item.startPi}
-        endPi={computedDuration ? computedDuration.endPi : item.endPi}
-        status={computedStatus ? computedStatus : item.status}
-        {index}
-        onChange={() => updateSpreadsheet(item)}
-        editable={false}
-      />
-    {:else}
-      <!-- ignore warnings about binding to non-reactive property-->
-      <TimelineBar
-        bind:startPi={item.startPi}
-        bind:endPi={item.endPi}
-        status={item.status}
-        {index}
-        onChange={() => updateSpreadsheet(item)}
-      />
-    {/if}
+    {@const computedDuration = level <= 1 ? computeDurationFromChildren(item) : null}
+    {@const hasChildren = items.some((i) => i.parentId === item.id)}
+    <RoadmapRow
+      {item}
+      {index}
+      {level}
+      {computedStatus}
+      {computedDuration}
+      {hasChildren}
+      {updateSpreadsheet}
+      {addChildItem}
+      {removeItem}
+      {toggleVisibility}
+    />
   {/each}
 </div>
 
@@ -413,70 +308,5 @@
     display: grid;
     grid-template-columns: auto 20px;
     gap: 4px;
-  }
-  .cell {
-    background-color: white;
-    color: navy;
-    padding-left: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    gap: 4px;
-    position: relative;
-    z-index: 1;
-  }
-  .cell.title {
-    font-weight: 500;
-  }
-  .cell.level-0 {
-    background-color: #cad8fb;
-  }
-  .cell.level-1 {
-    background-color: #dfe7fb;
-  }
-  .cell.title {
-    display: grid;
-    grid-template-columns: auto 1fr auto auto;
-    padding-right: 4px;
-  }
-  .cell.owner {
-    color: #333333;
-  }
-  .cell.level-1.status {
-    font-size: unset;
-  }
-  .cell.status.completed {
-    color: green;
-  }
-  .cell.status.planned {
-    color: gray;
-  }
-  .pi-cell {
-    background-color: #f9f9f9;
-  }
-  .cell.title.level-0 {
-    font-size: 1.1rem;
-  }
-  .cell.title.level-1 {
-    font-size: 1rem;
-    padding-left: 1rem;
-  }
-  .cell.title.level-2 {
-    padding-left: 1.5rem;
-  }
-  .cell .button {
-    visibility: hidden;
-  }
-  .cell:hover .button {
-    visibility: visible;
-  }
-  @media (max-width: 1200px) {
-    .roadmap {
-      font-size: 12px;
-    }
-
-    .cell {
-      padding: 6px;
-    }
   }
 </style>

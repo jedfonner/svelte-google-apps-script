@@ -1,6 +1,6 @@
 <script lang="ts">
   import { type RoadmapItem } from '../types';
-  import { ROW_START_INDEX, COLUMN_START_INDEX, PIs } from './Roadmap.svelte';
+  import { ROW_START_INDEX, COLUMN_START_INDEX, PIs } from './Config.svelte';
 
   let {
     startPi = $bindable(),
