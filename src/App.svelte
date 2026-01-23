@@ -2,26 +2,7 @@
   import svelteLogo from './assets/svelte.svg';
   import gasLogo from './assets/appsscript.svg';
   import Counter from './lib/Counter.svelte';
-
-  const invokeServerFunction = async () => {
-    try {
-      const result = await google.script.run
-        .withSuccessHandler((response: void) => {
-          // the response is void because testInvokationFromClient does not return anything
-          // update the type if your server function returns a value
-          console.log('Server response:', response);
-          alert('Server function invoked successfully!');
-        })
-        .withFailureHandler((error: GasError) => {
-          console.error('Error invoking server function:', error);
-          alert('Failed to invoke server function.');
-        })
-        .testInvokationFromClient(); // Replace 'serverFunction' with your actual server function name
-    } catch (error) {
-      console.error('Unexpected error:', error);
-      alert('An unexpected error occurred.');
-    }
-  };
+  import ServerDrivenComponent from './lib/ServerDrivenComponent.svelte';
 </script>
 
 <main>
@@ -34,15 +15,16 @@
     </a>
   </div>
   <h1>Svelte + Google Apps Script</h1>
+  <p class="read-the-docs">
+    Click on the logos to learn more about the respective technologies
+  </p>
 
   <div class="card">
     <Counter />
   </div>
   <div class="card">
-    <button onclick={invokeServerFunction}>Invoke Server Function</button>
+    <ServerDrivenComponent />
   </div>
-
-  <p class="read-the-docs">Click on the logos to learn more</p>
 </main>
 
 <style>
