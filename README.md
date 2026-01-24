@@ -9,6 +9,11 @@ This demonstrates how to use Svelte with Google Apps Script.
 - A Google account
 - Enable the Google Apps Script API at https://script.google.com/home/usersettings
 
+## Building
+- `npm run build` - Build the Svelte application
+- `npm run preview` - Preview the production build locally
+- `npm run check` - Run TypeScript and Svelte checks
+
 ## Developing
 
 - `npm install` to install dependencies.
@@ -16,19 +21,21 @@ This demonstrates how to use Svelte with Google Apps Script.
 - Open `http://localhost:5173` in your browser to see the app.
 - Edit the Svelte components in the `src` folder. The app will reload automatically
 
-## Building
-- `npm run build` - Build the Svelte application
-- `npm run preview` - Preview the production build locally
-- `npm run check` - Run TypeScript and Svelte checks
+### Running Locally with Mocked Google Apps Script
 
+To test Google Apps Script interactions locally, the project includes a mock setup that simulates the `google.script.run` API.
 
-## Working with Clasp for automated deployment
+To enable the mock setup, ensure that the `mockSetup.ts` file is imported and invoked in your main entry file (`src/main.ts`):
 
-### Enable Clasp
+Then add your mock server functions in `src/lib/mocks.ts`.
+
+### Working with Clasp for automated deployment
+
+#### Enable Clasp
 
 Enable the Google Apps Script API: https://script.google.com/home/usersettings
 
-### Authenticate with Clasp
+#### Authenticate with Clasp
 
 Login to your Google account:
 
@@ -38,7 +45,7 @@ npm run clasp:login
 
 This will open a browser window for authentication.
 
-### Create or Connect to a Google Apps Script Project
+#### Create or Connect to a Google Apps Script Project
 
 **Option A: Create a new project**
 
@@ -61,7 +68,7 @@ If you already have a Google Apps Script project, create a `.clasp.json` file in
 
 Replace `YOUR_SCRIPT_ID_HERE` with your script ID (found in Project Settings in the Apps Script editor).
 
-### Build and Deploy
+#### Build and Deploy
 
 Build your Svelte app and push to Google Apps Script:
 
@@ -71,7 +78,7 @@ npm run clasp:push
 
 This command builds the project and pushes all files to your Apps Script project.
 
-### Deploy as Web App
+#### Deploy as Web App
 
 1. Open your Apps Script project:
    ```bash
@@ -83,7 +90,7 @@ This command builds the project and pushes all files to your Apps Script project
 4. Configure access settings as needed
 5. Click **Deploy**
 
-### Clasp Commands
+#### Clasp Commands
 - `npm run clasp:login` - Authenticate with Google
 - `npm run clasp:logout` - Logout from Google
 - `npm run clasp:create` - Create a new Apps Script project
@@ -93,8 +100,7 @@ This command builds the project and pushes all files to your Apps Script project
 - `npm run clasp:deployments` - List all deployments
 - `npm run deploy` - Build and push to Apps Script (recommended)
 
-
-### Learn More
+#### Learn More about Clasp
 
 - [Clasp Documentation](https://developers.google.com/apps-script/guides/clasp)
 - [Google Apps Script Documentation](https://developers.google.com/apps-script)
@@ -108,14 +114,28 @@ This command builds the project and pushes all files to your Apps Script project
 │   ├── appsscript.json      # Apps Script manifest
 │   ├── Code.js              # Server-side Apps Script code
 │   ├── Index.html           # Main HTML template
-│   ├── Javascript.html      # Generated from build (auto-generated)
-│   └── Stylesheet.html      # Generated from build (auto-generated)
+│   ├── Javascript.html      # Generated from build (auto-generated, do not edit directly)
+│   └── Stylesheet.html      # Generated from build (auto-generated, do not edit directly)
 ├── src/                     # Svelte source files
+│   ├── lib/                 # Svelte components and utilities
+│   │   ├── Counter.svelte   # Example Svelte component
+│   │   ├── ServerDrivenComponent.svelte  # Example Svelte component interacting with GAS
+│   │   ├── mockSetup.ts     # Proxy Mock setup for local testing
+│   │   └── mocks.ts         # Add your mock server functions here
+│   ├── App.svelte           # Main Svelte component
+│   ├── app.css              # Global styles
+│   └── main.ts              # Entry point
+
 ├── .claspignore             # Files to ignore when pushing
 └── .clasp.json              # Clasp configuration (gitignored)
 ```
 
+The main files you will want to start with are
+* gas/Code.js
+* src/App.svelte
+* src/lib/mocks.ts
+
 ## How to extend
 - Add your Svelte components in the `src/lib` folder.
 - Import and use them in `src/App.svelte`.
-- If you need to call Google Apps Script functions from Svelte, use the [google.script.run](https://developers.google.com/apps-script/guides/html/reference/run#code.gs) API. See `testInvokationFromClient` example in Apps.svelte
+- If you need to call Google Apps Script functions from Svelte, use the [google.script.run](https://developers.google.com/apps-script/guides/html/reference/run#code.gs) API. See `testInvokationFromClient` example in `ServerDrivenComponent.svelte`, `mocks.ts` and `Code.js` for reference.
