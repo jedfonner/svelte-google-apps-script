@@ -9,6 +9,7 @@ function include(filename) {
   return HtmlService.createHtmlOutputFromFile(filename).getContent();
 }
 
-function testInvokationFromClient() {
-  Logger.log('testInvokationFromClient called');
+function testInvokationFromClient(arg1, arg2) {
+  Logger.log('testInvokationFromClient called with args: ' + arg1 + ', ' + arg2);
+  return 'Success from server - received: ' + arg1 + ', ' + arg2;
 }

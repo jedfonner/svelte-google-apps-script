@@ -6,22 +6,23 @@
   const invokeServerFunction = async () => {
     loadingState = 'loading';
     try {
-      const result = await (window as any).google.script.run
+      const result = await window.google.script.run
         .withSuccessHandler((response: string) => {
-          // the response is void because testInvokationFromClient does not return anything
-          // update the type if your server function returns a value
           console.log('Server response:', response);
           serverResponse = response;
           loadingState = 'success';
+          errorMessage = '';
         })
         .withFailureHandler((error: GasError) => {
           console.error('Error invoking server function:', error);
+          serverResponse = '';
           loadingState = 'error';
           errorMessage = error.message || 'Unknown error occurred';
         })
-        .testInvokationFromClient(); // Replace 'serverFunction' with your actual server function name
+        .testInvokationFromClient('foo', 'bar'); // Example of a server function call
     } catch (error) {
       console.error('Unexpected error:', error);
+      serverResponse = '';
       loadingState = 'error';
       errorMessage = `An unexpected error occurred: ${error}`;
     }

@@ -1,17 +1,9 @@
 import { mount } from 'svelte';
 import './app.css';
 import App from './App.svelte';
-// import { mockGoogleScriptRun } from './lib/mockGoogleScriptRun';
-import { setupMock } from './lib/mockGoogleScriptRun';
+import { setupMock } from './lib/mockSetup';
 
-/// <reference path="./custom-types.d.ts" />
-// if (import.meta.env.DEV) {
-//   (window as any).google = {
-//     script: {
-//       run: mockGoogleScriptRun.run,
-//     },
-//   };
-// }
+// If running in development mode locally, set up the mock server functions
 if (import.meta.env.DEV) {
   setupMock();
 }

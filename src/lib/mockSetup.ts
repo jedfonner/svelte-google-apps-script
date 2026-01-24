@@ -1,14 +1,6 @@
-// Add your server functions here
-const serverFunctions: ServerFunctions = {
-  testInvokationFromClient: () => {
-    console.log('[MOCK] Server function testInvokationFromClient executed');
-    return "Success from mock server!";
-  },
-  // You can add more mock server functions here as needed
-}
+import { mocks } from './mocks';
 
-
-// 2. Extend the Window interface to include our google object
+// Extend the Window interface to include our google object
 // This is necessary for TypeScript to recognize window.google.script.run
 // It must be in this file not global.d.ts to work correctly
 declare global {
@@ -28,7 +20,7 @@ export const setupMock = () => {
 
   const proxyMock = new Proxy({}, {
     get: (target, prop: string) => {
-      // TRAP 1: withSuccessHandler
+      // Handle withSuccessHandler
       if (prop === 'withSuccessHandler') {
         return (fn: any) => {
           callbacks.success = fn;
@@ -36,24 +28,25 @@ export const setupMock = () => {
         };
       }
 
-      // TRAP 2: withFailureHandler
+      // Handle withFailureHandler
       if (prop === 'withFailureHandler') {
         return (fn: any) => {
           callbacks.failure = fn;
-          return proxyMock;
+          return proxyMock; // Return the proxy to keep chaining
         };
       }
 
-      // TRAP 3: Server Functions
+      // Invoke mock functions
       return (...args: any[]) => {
         console.log(`[MOCK] Calling server function: ${prop}`, args);
 
+        // Simulate async behavior by using setTimeout to mimic 1s server delay
         setTimeout(() => {
           let result;
           let error = null;
 
-          if (serverFunctions[prop]) {
-            result = serverFunctions[prop](...args)
+          if (mocks[prop]) {
+            result = mocks[prop](...args)
           } else {
             error = new Error(`Function ${prop} not found on server.`);
           }
@@ -68,16 +61,14 @@ export const setupMock = () => {
           // Reset callbacks
           callbacks.success = null;
           callbacks.failure = null;
-        }, 500);
+        }, 1000);
       };
     },
   });
 
   window.google = {
     script: {
-      // The double cast 'as unknown as MockProxy' is crucial here.
-      // It tells TypeScript: "Trust me, this Proxy fulfills the MockProxy contract."
-      run: proxyMock as unknown as MockProxy
+      run: proxyMock as MockProxy
     }
   };
 }
