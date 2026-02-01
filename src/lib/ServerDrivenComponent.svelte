@@ -1,7 +1,7 @@
 <script lang="ts">
   let loadingState = $state<'idle' | 'loading' | 'success' | 'error'>('idle');
   let errorMessage: string = $state('');
-  let serverResponse: string = $state([]);
+  let serverResponse: Array<string> = $state([]);
 
   const invokeServerFunction = async () => {
     loadingState = 'loading';

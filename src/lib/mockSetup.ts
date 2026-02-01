@@ -19,13 +19,17 @@ interface MockProxy {
   [key: string]: any;
 }
 
+let mockServerDelay = 1000; // Default delay of 1 second
+
+type LoggerLevel = 'debug' | 'info' | 'warn' | 'error';
+let loggerLevel: LoggerLevel = 'info';
+
 const createMock = (state = { success: null as any, failure: null as any }) => {
   return new Proxy({}, {
     get: (target, prop: string) => {
-      // TRAP 1: withSuccessHandler
+      // Handle withSuccessHandler chaining
       if (prop === 'withSuccessHandler') {
         return (fn: any) => {
-          // CRITICAL FIX: Return a NEW proxy with updated state (don't mutate old state)
           return createMock({ ...state, success: fn });
         };
       }
@@ -33,40 +37,56 @@ const createMock = (state = { success: null as any, failure: null as any }) => {
       // TRAP 2: withFailureHandler
       if (prop === 'withFailureHandler') {
         return (fn: any) => {
-          // CRITICAL FIX: Return a NEW proxy with updated state
           return createMock({ ...state, failure: fn });
         };
       }
 
       // Invoke mock functions
       return (...args: any[]) => {
-        console.log(`[MOCK] Calling server function: ${prop}`, args);
+        if (loggerLevel === 'debug') console.log(`[MOCK] Calling server function: ${prop}`, args);
         const { success, failure } = state;
-        // Simulate async behavior by using setTimeout to mimic 1s server delay
-        setTimeout(() => {
-          let result;
-          let error = null;
 
-          if (mocks[prop]) {
-            result = mocks[prop](...args)
-          } else {
-            error = new Error(`Function ${prop} not found on server.`);
-          }
+        return new Promise((resolve, reject) => {
+          // Simulate async behavior by using setTimeout to mimic 1s server delay
+          setTimeout(async () => { // Make the timeout callback async
+            let result;
+            let error = null;
 
-          // Execute callbacks
-          // Execute the CAPTURED handlers (safe from other concurrent calls)
-          if (error && failure) {
-            failure(error);
-          } else if (!error && success) {
-            success(result);
-          }
-        }, 1000);
+            try {
+              if (mocks[prop]) {
+                // Await the mock function if it's async
+                result = await mocks[prop](...args);
+              } else {
+                const errorMessage = `[MOCK] Function ${prop} not found on server.`;
+                console.error(errorMessage);
+                error = new Error(errorMessage);
+              }
+            } catch (e) {
+              error = e;
+            }
+
+            // Execute callbacks and resolve/reject promise
+            if (error) {
+              if (failure) {
+                failure(error);
+              }
+              reject(error);
+            } else {
+              if (success) {
+                success(result);
+              }
+              resolve(result);
+            }
+          }, mockServerDelay);
+        });
       };
     },
   });
 };
 
-export const setupMock = () => {
+export const setupMock = (delay = 1000, logLevel: LoggerLevel = 'info') => {
+  mockServerDelay = delay;
+  loggerLevel = logLevel;
   window.google = {
     script: {
       run: createMock() as MockProxy
